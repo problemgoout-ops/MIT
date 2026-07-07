@@ -1,0 +1,31 @@
+[Unit]
+Description=MIT Assistent Django Backend (gunicorn)
+After=network.target postgresql.service
+Requires=postgresql.service
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/mit-assistent/backend
+EnvironmentFile=/opt/mit-assistent/backend/.env
+ExecStart=/opt/mit-assistent/backend/venv/bin/gunicorn config.wsgi:application \
+    --bind 127.0.0.1:8000 \
+    --workers 3 \
+    --threads 2 \
+    --worker-class sync \
+    --max-requests 1000 \
+    --max-requests-jitter 100 \
+    --timeout 30 \
+    --graceful-timeout 10 \
+    --access-logfile /var/log/mit-assistent/gunicorn-access.log \
+    --error-logfile /var/log/mit-assistent/gunicorn-error.log \
+    --log-level info \
+    --capture-output
+
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

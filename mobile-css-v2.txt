@@ -1,0 +1,140 @@
+@media (max-width: 1023px) {
+  #fluid-wrapper {
+    display: none !important;
+  }
+  #mobile-layout-v2 {
+    display: block !important;
+    font-family: "Geist", "Geist Placeholder", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f6f8fb;
+    min-height: 100vh;
+    color: #1A1F2B;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* === NAV === */
+  .mob-nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #e1e8f2;position:sticky;top:0;z-index:100;box-shadow:0 1px 0 #e1e8f2}
+  .mob-brand{display:flex;align-items:center;gap:10px}
+  .mob-logo{width:36px;height:36px;background:linear-gradient(135deg,#0d6b6b,#2aabee,#7a3cff);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0}
+  .mob-brand-name{font-weight:700;font-size:17px;color:#1A1F2B;letter-spacing:-0.01em}
+  .mob-cta-btn{background:#2aabee;color:#fff;border:none;padding:10px 18px;border-radius:999px;font-weight:600;font-size:13px;cursor:pointer;text-decoration:none;white-space:nowrap;box-shadow:0 8px 22px #2aabee38;transition:box-shadow 0.2s}
+  .mob-cta-btn:active{box-shadow:0 4px 12px #2aabee2e}
+
+  /* === HERO === */
+  .mob-hero{padding:40px 24px 32px;text-align:center;background:#f6f8fb}
+  .mob-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(22,133,199,0.08);border:1px solid rgba(22,133,199,0.2);border-radius:999px;padding:7px 14px;margin-bottom:20px}
+  .mob-badge-dot{width:7px;height:7px;background:#1685C7;border-radius:50%}
+  .mob-badge-text{font-weight:600;font-size:13px;color:#1685C7}
+  .mob-hero h1{font-size:30px;font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin:0 0 14px;color:#1A1F2B}
+  .mob-hero-sub{font-size:16px;line-height:1.5;color:#5E6B7F;margin:0 0 28px;max-width:420px;margin-left:auto;margin-right:auto}
+  .mob-hero-actions{display:flex;flex-direction:column;gap:10px;max-width:340px;margin:0 auto}
+  .mob-btn-primary{display:block;width:100%;background:linear-gradient(135deg,#0d6b6b,#2aabee);color:#fff;border:none;padding:16px 24px;border-radius:16px;font-weight:700;font-size:15px;text-decoration:none;text-align:center;box-sizing:border-box;box-shadow:0 12px 30px #2aabee3d;transition:box-shadow 0.2s}
+  .mob-btn-primary:active{box-shadow:0 6px 16px #2aabee2e}
+  .mob-btn-secondary{display:block;width:100%;background:#fff;color:#1A1F2B;border:1.5px solid #dce5ef;padding:16px 24px;border-radius:16px;font-weight:600;font-size:15px;text-decoration:none;text-align:center;box-sizing:border-box;box-shadow:0 4px 16px #1a1f2b08}
+
+  /* === TELEGRAM PREVIEW === */
+  .mob-telegram-preview{margin:0 20px 32px;background:radial-gradient(50% 50%,#ffffffeb 0%,#f6f8fba8 100%);border:1px solid #dce5ef;border-radius:28px;overflow:hidden;box-shadow:0 20px 50px #1a1f2b14}
+  .mob-chat-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fff;border-bottom:1px solid #e1e8f2}
+  .mob-chat-identity{display:flex;align-items:center;gap:10px}
+  .mob-chat-avatar{width:36px;height:36px;background:linear-gradient(135deg,#0d6b6b,#2aabee,#7a3cff);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px}
+  .mob-chat-name{font-weight:700;font-size:15px;color:#1A1F2B}
+  .mob-chat-status{font-weight:500;font-size:11px;color:#8EA1B2}
+  .mob-chat-body{padding:16px}
+  .mob-msg-user{background:#eaf6ff;border-radius:14px 14px 4px 14px;padding:12px 16px;font-size:13px;line-height:1.4;color:#1A1F2B;margin-bottom:12px;max-width:88%}
+  .mob-msg-bot{background:#fff;border:1px solid #e1e8f2;border-radius:14px 14px 14px 4px;padding:14px 16px;margin-bottom:12px;box-shadow:0 4px 12px #1a1f2b08}
+  .mob-msg-bot-title{font-weight:700;font-size:13px;color:#1A1F2B;margin-bottom:8px}
+  .mob-msg-bot-list{font-size:12px;color:#5E6B7F;line-height:1.7;margin:0;padding:0;list-style:none}
+  .mob-chat-input{display:flex;align-items:center;padding:10px 16px;border-top:1px solid #e1e8f2;gap:10px;background:#f6f8fb;border-radius:0 0 28px 28px}
+  .mob-chat-input-text{flex:1;font-size:12px;color:#8EA1B2;background:#fff;border:1px solid #e1e8f2;border-radius:999px;padding:10px 14px}
+  .mob-chat-input-mic{width:30px;height:30px;background:#2aabee;border-radius:50%;flex-shrink:0;box-shadow:0 4px 12px #2aabee38}
+  .mob-result-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 16px}
+  .mob-result-card{background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:12px;font-size:12px;font-weight:600;color:#1A1F2B;line-height:1.4;box-shadow:0 6px 18px #1a1f2b0a}
+  .mob-result-card-highlight{background:linear-gradient(135deg,#0d6b6b,#2aabee);color:#fff;border:none;grid-column:1/-1;padding:16px;font-size:20px;font-weight:800;border-radius:16px;box-shadow:0 12px 30px #2aabee33}
+  .mob-result-sub{font-size:12px;font-weight:500;opacity:0.78;margin-top:4px}
+
+  /* === SECTIONS === */
+  .mob-section{padding:40px 24px}
+  .mob-section-alt{background:#fff}
+  .mob-section h2{font-size:26px;font-weight:800;line-height:1.12;letter-spacing:-0.02em;margin:0 0 10px;color:#1A1F2B}
+  .mob-section-sub{font-size:15px;line-height:1.5;color:#5E6B7F;margin:0 0 24px}
+
+  /* === ADVANTAGE GRID === */
+  .mob-advantage-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .mob-advantage-card{background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:20px 16px;box-shadow:0 8px 24px #1a1f2b0a}
+  .mob-advantage-card h3{font-size:17px;font-weight:700;margin:0 0 6px;color:#1A1F2B;letter-spacing:-0.01em}
+  .mob-advantage-card p{font-size:13px;line-height:1.45;color:#5E6B7F;margin:0}
+
+  /* === CAPABILITIES BENTO === */
+  .mob-capability-card{background:#fff;border:1px solid #e1e8f2;border-radius:20px;padding:22px 20px;margin-bottom:12px;box-shadow:0 8px 24px #1a1f2b0a}
+  .mob-capability-card h3{font-size:19px;font-weight:800;margin:0 0 8px;color:#1A1F2B;letter-spacing:-0.01em}
+  .mob-capability-card p{font-size:14px;line-height:1.5;color:#5E6B7F;margin:0}
+  .mob-capability-visual{height:80px;border-radius:16px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .mob-cap-visual-cal{background:linear-gradient(135deg,#2aabee14,#2aabee05);border:1px solid #2aabee2e}
+  .mob-cap-visual-tasks{background:linear-gradient(135deg,#1685C714,#1685C705);border:1px solid #1685C72e}
+  .mob-cap-visual-docs{background:linear-gradient(135deg,#0d6b6b14,#0d6b6b05);border:1px solid #0d6b6b2e}
+  .mob-cap-visual-tables{background:linear-gradient(135deg,#7a3cff14,#2aabee0a);border:1px solid #7a3cff2e}
+  .mob-cap-visual-kb{background:linear-gradient(135deg,#0d6b6b14,#ffffffe6);border:1px solid #0d6b6b2e}
+  .mob-cap-visual-ideas{background:linear-gradient(135deg,#7a3cff14,#ffffffe6);border:1px solid #7a3cff2e}
+
+  /* === CTA BANNER === */
+  .mob-cta-banner{background:linear-gradient(135deg,#0d6b6b,#2aabee,#7a3cff);border-radius:24px;padding:32px 24px;text-align:center;color:#fff;margin:0 20px 40px;box-shadow:0 20px 50px #2aabee33}
+  .mob-cta-banner h2{font-size:24px;font-weight:800;margin:0 0 10px;color:#fff;letter-spacing:-0.02em}
+  .mob-cta-banner p{font-size:15px;line-height:1.5;opacity:0.85;margin:0 0 22px}
+  .mob-cta-banner .mob-btn-primary{background:#fff;color:#1A1F2B;box-shadow:0 8px 24px #0000001a}
+
+  /* === INTEGRATIONS === */
+  .mob-integration-item{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #e1e8f2;border-radius:16px;padding:16px;margin-bottom:10px;box-shadow:0 6px 18px #1a1f2b08}
+  .mob-integration-icon{width:44px;height:44px;background:linear-gradient(135deg,#f0f4f8,#e8eef5);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:1px solid #e1e8f2}
+  .mob-integration-name{font-weight:600;font-size:15px;color:#1A1F2B}
+  .mob-integration-desc{font-size:12px;color:#5E6B7F;margin-top:2px}
+
+  /* === PERSONAL SKILLS === */
+  .mob-skills-flow{display:flex;flex-direction:column;gap:12px}
+  .mob-skill-step{background:#fff;border:1px solid #e1e8f2;border-radius:20px;padding:20px;box-shadow:0 8px 24px #1a1f2b0a;position:relative}
+  .mob-skill-step-num{width:32px;height:32px;background:linear-gradient(135deg,#0d6b6b,#2aabee);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;margin-bottom:12px}
+  .mob-skill-step h3{font-size:17px;font-weight:700;margin:0 0 6px;color:#1A1F2B}
+  .mob-skill-step p{font-size:14px;line-height:1.45;color:#5E6B7F;margin:0}
+  .mob-skill-arrow{text-align:center;font-size:20px;color:#8EA1B2;padding:4px 0}
+
+  /* === SECURITY === */
+  .mob-security-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .mob-security-card{background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:20px 16px;box-shadow:0 8px 24px #1a1f2b0a}
+  .mob-security-card h3{font-size:16px;font-weight:700;margin:0 0 6px;color:#1A1F2B}
+  .mob-security-card p{font-size:13px;line-height:1.4;color:#5E6B7F;margin:0}
+
+  /* === PRICING === */
+  .mob-pricing-card{background:#fff;border:1px solid #e1e8f2;border-radius:20px;padding:24px 20px;margin-bottom:14px;box-shadow:0 8px 24px #1a1f2b0a}
+  .mob-pricing-card.featured{border:2px solid #2aabee;box-shadow:0 12px 36px #2aabee1a;position:relative}
+  .mob-pricing-card.featured::before{content:"Популярный";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#0d6b6b,#2aabee);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:999px}
+  .mob-pricing-name{font-weight:700;font-size:17px;color:#1A1F2B;margin-bottom:6px}
+  .mob-pricing-price{font-weight:800;font-size:30px;color:#1A1F2B;margin-bottom:14px;letter-spacing:-0.02em}
+  .mob-pricing-price span{font-size:14px;font-weight:500;color:#5E6B7F}
+  .mob-pricing-features{list-style:none;padding:0;margin:0 0 18px}
+  .mob-pricing-features li{font-size:14px;color:#5E6B7F;padding:5px 0;line-height:1.4}
+  .mob-pricing-features li::before{content:"✓ ";color:#22c55e;font-weight:700}
+
+  /* === FAQ === */
+  .mob-faq-item{background:#fff;border:1px solid #e1e8f2;border-radius:14px;margin-bottom:8px;overflow:hidden;box-shadow:0 4px 12px #1a1f2b06}
+  .mob-faq-q{padding:18px 20px;font-weight:600;font-size:15px;color:#1A1F2B;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;letter-spacing:-0.01em}
+  .mob-faq-q::after{content:"+";font-size:22px;color:#8EA1B2;transition:transform 0.25s;font-weight:400}
+  .mob-faq-item.open .mob-faq-q::after{content:"−";color:#2aabee}
+  .mob-faq-a{padding:0 20px 18px;font-size:14px;line-height:1.55;color:#5E6B7F;display:none}
+  .mob-faq-item.open .mob-faq-a{display:block}
+
+  /* === FORM === */
+  .mob-form{background:#fff;border-radius:24px;padding:28px 20px;box-shadow:0 16px 48px #1a1f2b0f;border:1px solid #e1e8f2}
+  .mob-form h2{font-size:22px;font-weight:800;margin:0 0 8px;text-align:center;letter-spacing:-0.02em}
+  .mob-form p{font-size:14px;color:#5E6B7F;text-align:center;margin:0 0 22px;line-height:1.5}
+  .mob-form input,.mob-form textarea{width:100%;padding:15px 16px;border:1.5px solid #dce5ef;border-radius:12px;font-size:15px;font-family:inherit;margin-bottom:12px;box-sizing:border-box;background:#f6f8fb;color:#1A1F2B;transition:border-color 0.2s,background 0.2s}
+  .mob-form input:focus,.mob-form textarea:focus{outline:none;border-color:#2aabee;background:#fff;box-shadow:0 0 0 3px #2aabee14}
+  .mob-form textarea{min-height:110px;resize:vertical}
+  .mob-form button{width:100%;background:linear-gradient(135deg,#0d6b6b,#2aabee);color:#fff;border:none;padding:16px;border-radius:14px;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 10px 28px #2aabee33;transition:box-shadow 0.2s}
+  .mob-form button:active{box-shadow:0 4px 12px #2aabee24}
+  .mob-form-status{text-align:center;font-size:13px;margin-top:12px;min-height:20px}
+  .mob-form-status.success{color:#22c55e}
+  .mob-form-status.error{color:#dc2626}
+
+  /* === FOOTER === */
+  .mob-footer{text-align:center;padding:28px 20px;font-size:12px;color:#8EA1B2;border-top:1px solid #e1e8f2;background:#fff}
+}

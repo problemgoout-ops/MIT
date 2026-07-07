@@ -1,0 +1,266 @@
+<div id="mobile-layout-v2">
+
+<nav class="mob-nav">
+  <div class="mob-brand">
+    <div class="mob-logo">M</div>
+    <span class="mob-brand-name">МИТ ассистент</span>
+  </div>
+  <a class="mob-cta-btn" href="#mob-lead-form">Запустить</a>
+</nav>
+
+<!-- HERO -->
+<section class="mob-hero">
+  <div class="mob-badge">
+    <div class="mob-badge-dot"></div>
+    <span class="mob-badge-text">AI-агент в Telegram</span>
+  </div>
+  <h1>Персональный AI-ассистент в Telegram для порядка в работе</h1>
+  <p class="mob-hero-sub">МИТ берёт рутину на себя: держит контекст, выполняет задачи и напоминает о важном.</p>
+  <div class="mob-hero-actions">
+    <a class="mob-btn-primary" href="#mob-lead-form">Запустить МИТ Ассистент</a>
+    <a class="mob-btn-secondary" href="#mob-capabilities">Посмотреть возможности</a>
+  </div>
+</section>
+
+<!-- TELEGRAM PREVIEW -->
+<div class="mob-telegram-preview">
+  <div class="mob-chat-header">
+    <div class="mob-chat-identity">
+      <div class="mob-chat-avatar">МИТ</div>
+      <div>
+        <div class="mob-chat-name">МИТ</div>
+        <div class="mob-chat-status">AI-агент · 24/7</div>
+      </div>
+    </div>
+  </div>
+  <div class="mob-chat-body">
+    <div class="mob-msg-user">Подготовь отчёт по продажам за апрель, сохрани в папку «Отчёты», поставь напоминание и создай встречу в календаре.</div>
+    <div class="mob-msg-bot">
+      <div class="mob-msg-bot-title">Понял. Выполняю план:</div>
+      <ul class="mob-msg-bot-list">
+        <li>✓ Анализ данных по продажам</li>
+        <li>✓ Формирование отчёта</li>
+        <li>✓ Сохранение файла</li>
+        <li>✓ Напоминание</li>
+        <li>✓ Встреча в календаре</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mob-chat-input">
+    <span class="mob-chat-input-text">Напишите сообщение…</span>
+    <div class="mob-chat-input-mic"></div>
+  </div>
+  <div class="mob-result-cards">
+    <div class="mob-result-card">📅 Встреча создана<br>Сегодня, 10:00–11:00</div>
+    <div class="mob-result-card">📄 Файл сохранён<br>Отчёт_Апрель_2024.pdf</div>
+    <div class="mob-result-card">🔔 Напоминание<br>Завтра, 09:50</div>
+    <div class="mob-result-card-highlight">
+      Продажи: +24%
+      <div class="mob-result-sub">Рост к прошлому месяцу</div>
+    </div>
+  </div>
+</div>
+
+<!-- ADVANTAGES -->
+<div class="mob-section">
+  <div class="mob-advantage-grid">
+    <div class="mob-advantage-card"><h3>Контекст</h3><p>Задачи, диалоги и договорённости остаются в памяти.</p></div>
+    <div class="mob-advantage-card"><h3>Рутина</h3><p>Повторяющиеся действия выполняются без вашего участия.</p></div>
+    <div class="mob-advantage-card"><h3>Контроль</h3><p>Важное не теряется и приходит вовремя.</p></div>
+    <div class="mob-advantage-card"><h3>Навыки</h3><p>МИТ учится работать по вашим правилам.</p></div>
+  </div>
+</div>
+
+<!-- CAPABILITIES BENTO -->
+<div class="mob-section mob-section-alt" id="mob-capabilities">
+  <h2>Что уже умеет МИТ ассистент</h2>
+  <p class="mob-section-sub">Базовые навыки уже внутри: задачи, календарь, напоминания, идеи, документы, таблицы и база знаний работают прямо в Telegram.</p>
+
+  <div class="mob-capability-card">
+    <div class="mob-capability-visual mob-cap-visual-cal" style="gap:8px;padding:12px">
+      <div style="width:44px;height:44px;background:#fff;border:1px solid #e1e8f2;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#8EA1B2">09</div>
+      <div style="width:44px;height:44px;background:#2aabee;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#fff">10</div>
+      <div style="width:44px;height:44px;background:#fff;border:1px solid #2aabee;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#2aabee">11</div>
+    </div>
+    <h3>📅 Календарь</h3>
+    <p>Создаёт встречи, переносит события и показывает расписание.</p>
+  </div>
+
+  <div class="mob-capability-card">
+    <div class="mob-capability-visual mob-cap-visual-tasks" style="flex-direction:column;align-items:flex-start;padding:12px 16px;gap:6px">
+      <div style="font-weight:700;font-size:12px;color:#1685C7">Рабочий план · сегодня</div>
+      <div style="font-weight:600;font-size:13px;color:#1A1F2B">✓ Отчёт по продажам · 82%</div>
+      <div style="font-weight:600;font-size:13px;color:#1A1F2B">✓ Согласовать встречу · 10:00</div>
+      <div style="width:100%;height:4px;background:#e1e8f2;border-radius:999px;margin-top:4px"><div style="width:82%;height:100%;background:#2aabee;border-radius:999px"></div></div>
+    </div>
+    <h3>✓ Задачи</h3>
+    <p>Создаёт задачи, фиксирует сроки и помогает контролировать выполнение.</p>
+  </div>
+
+  <div class="mob-capability-card">
+    <div class="mob-capability-visual mob-cap-visual-docs" style="flex-direction:column;align-items:flex-start;padding:12px 16px;gap:6px">
+      <div style="font-weight:700;font-size:13px;color:#1A1F2B">Отчёт_Апрель.pdf</div>
+      <div style="width:60%;height:3px;background:#0d6b6b33;border-radius:999px"></div>
+      <div style="width:40%;height:3px;background:#0d6b6b1a;border-radius:999px"></div>
+      <div style="background:#fff;border:1px solid #0d6b6b33;border-radius:999px;padding:3px 10px;font-size:10px;font-weight:700;color:#1685C7;margin-top:4px">сохранено в «Отчёты»</div>
+    </div>
+    <h3>📄 Документы</h3>
+    <p>Создаёт черновики, сохраняет материалы и помогает найти нужное.</p>
+  </div>
+
+  <div class="mob-capability-card">
+    <div class="mob-capability-visual mob-cap-visual-tables" style="align-items:flex-end;gap:6px;padding:12px 16px">
+      <div style="width:18%;height:32px;background:#8ea1b2;border-radius:8px"></div>
+      <div style="width:18%;height:48px;background:#2aabee;border-radius:8px"></div>
+      <div style="width:18%;height:64px;background:#7a3cff;border-radius:8px"></div>
+      <div style="width:18%;height:80px;background:#22c55e;border-radius:8px"></div>
+    </div>
+    <h3>📊 Excel и таблицы</h3>
+    <p>Помогает разбирать таблицы, готовить сводки, отчёты и выводы по данным.</p>
+  </div>
+
+  <div class="mob-capability-card">
+    <div class="mob-capability-visual mob-cap-visual-kb" style="flex-direction:column;align-items:center;justify-content:center;gap:4px">
+      <div style="font-weight:700;font-size:14px;color:#0d6b6b">инструкция → ответ</div>
+      <div style="font-weight:600;font-size:11px;color:#5E6B7F">по вашим правилам</div>
+    </div>
+    <h3>📚 База знаний</h3>
+    <p>Отвечает по вашим инструкциям, правилам и документам.</p>
+  </div>
+
+  <div class="mob-capability-card">
+    <div class="mob-capability-visual mob-cap-visual-ideas" style="flex-direction:column;align-items:center;justify-content:center;gap:6px">
+      <div style="font-weight:700;font-size:13px;color:#7a3cff">inbox → идея → заметка</div>
+      <div style="background:#fff;border:1px solid #7a3cff33;border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700;color:#7a3cff">3 входящих</div>
+    </div>
+    <h3>💡 Идеи и заметки</h3>
+    <p>Сохраняет мысли, идеи и входящие заметки в отдельный inbox.</p>
+  </div>
+</div>
+
+<!-- INTERMEDIATE CTA -->
+<div class="mob-cta-banner">
+  <h2>Готовы проверить МИТ на своей задаче?</h2>
+  <p>Оставьте заявку — и ассистент начнёт установку под ваш рабочий контекст.</p>
+  <a class="mob-btn-primary" href="#mob-lead-form">Запустить МИТ ассистента</a>
+</div>
+
+<!-- INTEGRATIONS HUB -->
+<div class="mob-section mob-section-alt" id="mob-integrations">
+  <h2>МИТ связан с тем, где уже идёт ваша работа</h2>
+  <p class="mob-section-sub">Ассистент подключается к привычным источникам, собирает важное и возвращает результат в Telegram — без необходимости переносить всё вручную.</p>
+  <div class="mob-integration-item"><div class="mob-integration-icon">💬</div><div><div class="mob-integration-name">Telegram</div><div class="mob-integration-desc">Сообщения, файлы, голос</div></div></div>
+  <div class="mob-integration-item"><div class="mob-integration-icon">📧</div><div><div class="mob-integration-name">Email</div><div class="mob-integration-desc">Почта, вложения</div></div></div>
+  <div class="mob-integration-item"><div class="mob-integration-icon">📅</div><div><div class="mob-integration-name">Календарь</div><div class="mob-integration-desc">Google, Яндекс, Outlook</div></div></div>
+  <div class="mob-integration-item"><div class="mob-integration-icon">📁</div><div><div class="mob-integration-name">Файлы и документы</div><div class="mob-integration-desc">PDF, Excel, Word</div></div></div>
+  <div class="mob-integration-item"><div class="mob-integration-icon">📚</div><div><div class="mob-integration-name">База знаний</div><div class="mob-integration-desc">Инструкции, регламенты</div></div></div>
+</div>
+
+<!-- PERSONAL SKILLS -->
+<div class="mob-section" id="mob-skills">
+  <h2>МИТ учится вашим задачам</h2>
+  <p class="mob-section-sub">Ассистент запоминает повторяющиеся действия и формирует персональные навыки, которые работают автоматически.</p>
+  <div class="mob-skills-flow">
+    <div class="mob-skill-step">
+      <div class="mob-skill-step-num">1</div>
+      <h3>Повторяющаяся работа</h3>
+      <p>Вы выполняете задачу привычным способом — МИТ наблюдает и фиксирует шаблон.</p>
+    </div>
+    <div class="mob-skill-arrow">↓</div>
+    <div class="mob-skill-step">
+      <div class="mob-skill-step-num">2</div>
+      <h3>МИТ собирает навык</h3>
+      <p>Ассистент анализирует повторяющиеся действия и формирует автоматический навык.</p>
+    </div>
+    <div class="mob-skill-arrow">↓</div>
+    <div class="mob-skill-step">
+      <div class="mob-skill-step-num">3</div>
+      <h3>Навык готов</h3>
+      <p>В следующий раз МИТ выполнит задачу сам — вам останется только подтвердить результат.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECURITY -->
+<div class="mob-section mob-section-alt" id="mob-security">
+  <h2>Как это работает</h2>
+  <p class="mob-section-sub">МИТ работает через безопасное подключение к вашему Telegram. Все данные хранятся в изолированном контуре, доступ к которому есть только у вас.</p>
+  <div class="mob-security-grid">
+    <div class="mob-security-card"><h3>🔒 Изолированный контур</h3><p>Ваши данные не смешиваются с другими. Каждый экземпляр МИТ работает в собственном защищённом пространстве.</p></div>
+    <div class="mob-security-card"><h3>🔑 Вы контролируете доступ</h3><p>Только вы решаете, к каким сервисам подключать ассистента. Можно отозвать разрешения в любой момент.</p></div>
+    <div class="mob-security-card"><h3>🛡️ Шифрование</h3><p>Все данные передаются по защищённым каналам. Информация не покидает ваш контур без вашего ведома.</p></div>
+    <div class="mob-security-card"><h3>📋 Аудит действий</h3><p>Все действия ассистента логируются. Вы всегда можете посмотреть, что и когда делал МИТ.</p></div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="mob-section" id="mob-pricing">
+  <h2>Стоимость</h2>
+  <p class="mob-section-sub">Выберите подходящий тариф и начните работать с МИТ уже сегодня.</p>
+  <div class="mob-pricing-card"><div class="mob-pricing-name">Старт</div><div class="mob-pricing-price">3 900 ₽<span>/мес</span></div><ul class="mob-pricing-features"><li>Базовые навыки (задачи, календарь)</li><li>Память и контекст</li><li>Напоминания</li><li>Telegram-интерфейс</li></ul><a class="mob-btn-primary" href="#mob-lead-form">Выбрать Старт</a></div>
+  <div class="mob-pricing-card featured"><div class="mob-pricing-name">Профи</div><div class="mob-pricing-price">7 900 ₽<span>/мес</span></div><ul class="mob-pricing-features"><li>Всё из тарифа Старт</li><li>Документы и таблицы</li><li>База знаний</li><li>Интеграции (почта, календарь)</li><li>Приоритетная поддержка</li></ul><a class="mob-btn-primary" href="#mob-lead-form">Выбрать Профи</a></div>
+  <div class="mob-pricing-card"><div class="mob-pricing-name">Команда</div><div class="mob-pricing-price">19 900 ₽<span>/мес</span></div><ul class="mob-pricing-features"><li>Всё из тарифа Профи</li><li>До 5 пользователей</li><li>Общая база знаний</li><li>Административная панель</li><li>Персональный менеджер</li></ul><a class="mob-btn-primary" href="#mob-lead-form">Выбрать Команда</a></div>
+</div>
+
+<!-- FAQ -->
+<div class="mob-section mob-section-alt" id="mob-faq">
+  <h2>Частые вопросы</h2>
+  <div class="mob-faq-item"><div class="mob-faq-q" onclick="this.parentElement.classList.toggle('open')">Как быстро МИТ начинает работать?</div><div class="mob-faq-a">После отправки заявки мы связываемся с вами в течение 24 часов. Настройка занимает 1–2 дня в зависимости от сложности ваших процессов.</div></div>
+  <div class="mob-faq-item"><div class="mob-faq-q" onclick="this.parentElement.classList.toggle('open')">Нужно ли устанавливать что-то на компьютер?</div><div class="mob-faq-a">Нет. МИТ работает полностью в Telegram. Вам не нужно устанавливать дополнительные приложения или программы.</div></div>
+  <div class="mob-faq-item"><div class="mob-faq-q" onclick="this.parentElement.classList.toggle('open')">Насколько это безопасно?</div><div class="mob-faq-a">Все данные хранятся в изолированном контуре с шифрованием. Вы полностью контролируете, к каким сервисам подключается ассистент.</div></div>
+  <div class="mob-faq-item"><div class="mob-faq-q" onclick="this.parentElement.classList.toggle('open')">Можно ли обучить МИТ под мои задачи?</div><div class="mob-faq-a">Да. При настройке мы загружаем ваши инструкции, регламенты и правила. МИТ учится работать именно так, как нужно вам.</div></div>
+  <div class="mob-faq-item"><div class="mob-faq-q" onclick="this.parentElement.classList.toggle('open')">Что если я захочу отключить ассистента?</div><div class="mob-faq-a">Вы можете приостановить или полностью отключить МИТ в любой момент. Все ваши данные будут удалены из системы по запросу.</div></div>
+</div>
+
+<!-- LEAD FORM -->
+<div class="mob-section" id="mob-lead-form">
+  <div class="mob-form">
+    <h2>Запустите МИТ ассистента</h2>
+    <p>Оставьте заявку, и мы настроим персонального AI-ассистента под ваши задачи</p>
+    <form id="mob-lead-form-v2" onsubmit="return submitMobileFormV2(event)">
+      <input type="text" name="name" placeholder="Ваше имя" required>
+      <input type="text" name="telegram" placeholder="Ваш Telegram (@username)" required>
+      <input type="email" name="email" placeholder="Email (необязательно)">
+      <textarea name="message" placeholder="Опишите ваши задачи. Что должен уметь ассистент?"></textarea>
+      <button type="submit">Отправить заявку</button>
+    </form>
+    <div class="mob-form-status" id="mob-form-status-v2"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="mob-footer">
+  © 2024–2026 МИТ Ассистент. Все права защищены.<br>
+  <span style="opacity:0.6">Персональный AI-ассистент в Telegram</span>
+</div>
+
+<script>
+function submitMobileFormV2(e) {
+  e.preventDefault();
+  var status = document.getElementById('mob-form-status-v2');
+  status.textContent = 'Отправка...';
+  status.className = 'mob-form-status';
+  var form = e.target;
+  var data = new FormData(form);
+  fetch('https://formspree.io/f/xrbpglen', {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(r) {
+    if (r.ok) {
+      status.textContent = '✓ Заявка отправлена! Мы свяжемся с вами в ближайшее время.';
+      status.className = 'mob-form-status success';
+      form.reset();
+    } else {
+      return r.json().then(function(d) { throw d; });
+    }
+  })
+  .catch(function() {
+    status.textContent = 'Ошибка отправки. Пожалуйста, напишите нам в Telegram: @mit_assistent';
+    status.className = 'mob-form-status error';
+  });
+}
+</script>
+
+</div><!-- /mobile-layout-v2 -->

@@ -1,0 +1,63 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: mit-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-mit_assistent}
+      POSTGRES_USER: ${DB_USER:-mit_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-mit_user} -d ${DB_NAME:-mit_assistent}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mit-net
+
+  web:
+    build: .
+    container_name: mit-web
+    restart: unless-stopped
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py collectstatic --noinput &&
+             gunicorn config.wsgi:application
+             --bind 0.0.0.0:8000
+             --workers 3
+             --threads 2
+             --max-requests 1000
+             --max-requests-jitter 100
+             --timeout 30
+             --graceful-timeout 10
+             --log-level info
+             --access-logfile /app/logs/gunicorn-access.log
+             --error-logfile /app/logs/gunicorn-error.log"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - logs_volume:/app/logs
+    ports:
+      - "127.0.0.1:8088:8000"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - mit-net
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+  logs_volume:
+
+networks:
+  mit-net:
+    driver: bridge

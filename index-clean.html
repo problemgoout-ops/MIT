@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>МИТ Ассистент — AI-агент в Telegram</title>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<style>
+/* === CLEAN STYLES (de-Framed) === */
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwRGFWfOw.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwYGFWfOw.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwTGFWfOw.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwSGFWfOw.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwcGFU.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwRGFWfOw.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwYGFWfOw.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwTGFWfOw.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwSGFWfOw.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwcGFU.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwRGFWfOw.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwYGFWfOw.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwTGFWfOw.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwSGFWfOw.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwcGFU.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face { font-family: "Geist"; src: url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_Re-Q4mJPby1QNtA.woff2"); font-display: swap; font-style: normal; font-weight: 700 }
+
+@font-face { font-family: "Geist"; src: url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RNeQ4mJPby1QNtA.woff2"); font-style: normal; font-weight: 900 }
+
+@font-face { font-family: "Geist"; src: url("https://fonts.gstatic.com/s/geist/v5/gyBjhwUxId8gMEwZAluvzlxA9ojEVKB52Zna6VEdtKCL.woff2"); font-style: italic; font-weight: 900 }
+
+@font-face { font-family: "Geist"; src: url("https://fonts.gstatic.com/s/geist/v5/gyBjhwUxId8gMEwZAluvzlxA9ojEVKA32Zna6VEdtKCL.woff2"); font-display: swap; font-style: italic; font-weight: 700 }
+
+@font-face { font-family: "Geist"; src: url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RnOM4mJPby1QNtA.woff2"); font-display: swap; font-style: normal; font-weight: 400 }
+
+@font-face { font-family: "Geist"; src: url("https://fonts.gstatic.com/s/geist/v5/gyBjhwUxId8gMEwZAluvzlxA9ojEVKDQ3pna6VEdtKCL.woff2"); font-display: swap; font-style: italic; font-weight: 400 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@font-face { font-family: "Geist Placeholder"; src: local("Arial"); ascent-override: 94.47%; descent-override: 27.73%; line-gap-override: 0.00%; size-adjust: 106.39% }
+
+@font-face { font-family: "Inter Placeholder"; src: local("Arial"); ascent-override: 89.79%; descent-override: 22.36%; line-gap-override: 0.00%; size-adjust: 107.89% }
+
+body{}
+body{}
+body{}
+body{}
+body{}
+body{}
+body{}
+body{}
+body{ background: rgb(246, 248, 251); }
+
+.mit-desktop .mit-lux5qc{display:block}
+.mit-desktop .mit-1etxs3x{flex-flow:row;flex:none;place-content:center space-between;align-items:center;width:100%;max-width:1180px;height:min-content;padding:22px 24px;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-k4gvrh,.mit-1b5sm3e,.mit-1ragf57,.mit-1o2od5s{flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:10px;width:min-content;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-ax9gjj{height:34px;overflow:clip;will-change:none;border-radius:8px;flex:none;width:34px;position:relative}
+.mit-desktop .mit-1pl5c8h,.mit-10z0cj5,.mit-1rifroy,.mit-vcepc7,.mit-1yhaj3j,.mit-1srinvm,.mit-1hw1rpw,.mit-ni8tsd,.mit-avxruk,.mit-pijnqy,.mit-1h4onqe,.mit-zt5gh,.mit-nbwjt6,.mit-1qcvle,.mit-19mctc6,.mit-1qcc84m,.mit-1fhqpcv,.mit-1cmkkek,.mit-1okoape,.mit-unp5ep,.mit-aqs7xy,.mit-102yln5,.mit-1bfq3yj,.mit-357f6g,.mit-z9o2kq,.mit-138y5u,.mit-wppjvq,.mit-ukq0vs,.mit-uwy9lo,.mit-1hmilrr,.mit-cpou0d,.mit-1qc6c56,.mit-mp5m3b,.mit-ir72e8,.mit-3tbk44,.mit-y61808,.mit-1cqt8na,.mit-1a3y5cs,.mit-2kzvsb,.mit-jfo2eh,.mit-jly1n4,.mit-1rzii5t,.mit-1di9ajj,.mit-486qa7,.mit-1obfd8o,.mit-to8u0n,.mit-dt86k2,.mit-1bc5pmp,.mit-k3gt38,.mit-v4p6lg,.mit-1ar1tk0,.mit-1xqvgr4,.mit-6zprnh{white-space:pre;flex:none;width:auto;height:auto;position:relative}
+.mit-desktop .mit-y3d47h{flex-flow:row;flex:none;place-content:center;align-items:center;gap:22px;width:min-content;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1762gwr{cursor:pointer;height:min-content;overflow:clip;will-change:none;background-color:#2aabee;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:8px;width:min-content;padding:12px 18px;text-decoration:none;display:flex;position:relative;box-shadow:0 12px 30px #2aabee42}
+.mit-desktop .mit-1blo7nt{flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:44px;width:100%;max-width:1180px;height:min-content;padding:40px 24px 30px;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1ricdt9{flex-flow:column;flex:1 0 0;place-content:flex-start;align-items:flex-start;gap:22px;width:1px;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1x4s6v9{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#2aabee14;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:8px;width:min-content;padding:8px 12px;display:flex;position:relative}
+.mit-desktop .mit-f4idn5,.mit-1gvntrg,.mit-18guuoc{height:18px;flex:none;width:18px;position:relative}
+.mit-desktop .mit-jg3hue,.mit-8kf3po,.mit-15mlx86,.mit-1l8rpv9,.mit-sj7olw,.mit-omixse,.mit-1hkvcza,.mit-hf5jre,.mit-kdd0jc,.mit-wc6itr,.mit-1bgagxn,.mit-ppj0sz,.mit-1j868rw,.mit-13eqj0o,.mit-v4cjbs,.mit-9315p1,.mit-ufksgr,.mit-68lchw,.mit-689bfm,.mit-134dppl,.mit-1iyuieu,.mit-43ocq5,.mit-xkwacd,.mit-1kqtar9,.mit-2q0ndh,.mit-1oy5djp,.mit-csc2hh,.mit-qi16sp,.mit-tssu9d,.mit-b7dwkr,.mit-j9awcy,.mit-1iasazu,.mit-8k7tba,.mit-13dg05z,.mit-t7lz8m,.mit-1cl6pyh,.mit-1ncfz65,.mit-yeqke4,.mit-19426z4,.mit-o11non,.mit-4g3489,.mit-1rrikhx,.mit-pvaamr,.mit-3jdhsp,.mit-13su9xz,.mit-hle1yi,.mit-1j8w988,.mit-1oh7m22,.mit-vtdupv,.mit-cfj95t,.mit-qoxsoz,.mit-xydqk7,.mit-14fl1jw,.mit-1k23azh,.mit-ygoyfx,.mit-1m79ix6,.mit-mh4h91,.mit-rndt5k,.mit-2ej1eb,.mit-ijgy04,.mit-1ig3cjj,.mit-1wvewf4,.mit-8fnkt6,.mit-wlkvmh,.mit-1e47m9a,.mit-jocuo5{white-space:pre-wrap;word-break:break-word;word-wrap:break-word;flex:none;width:100%;height:auto;position:relative}
+.mit-desktop .mit-15gpk13,.mit-vid4l6,.mit-xn89c1,.mit-rs30in{flex:none;width:100%;height:auto;position:relative}
+.mit-desktop .mit-1v9no1k{flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:12px;width:min-content;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-18crdhh{cursor:pointer;height:min-content;overflow:clip;will-change:none;background-color:#2aabee;border-radius:16px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:10px;width:min-content;padding:15px 22px;text-decoration:none;display:flex;position:relative;box-shadow:0 18px 40px #2aabee47}
+.mit-desktop .mit-yxjsb7{height:20px;flex:none;width:20px;position:relative}
+.mit-desktop .mit-1tenvf6{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;cursor:pointer;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:8px;width:min-content;padding:15px 18px;text-decoration:none;display:flex;position:relative}
+.mit-desktop .mit-5dfrwx{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;background:radial-gradient(50% 50%,#ffffffeb 0%,#f6f8fba8 100%);border-radius:34px;flex-flow:row;flex:1 0 0;place-content:center;align-items:center;gap:0;width:1px;min-width:0;height:590px;padding:0;display:flex;position:relative;overflow:visible;box-shadow:0 28px 70px #1a1f2b1a}
+.mit-desktop .mit-p9ydro{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:520px;overflow:clip;will-change:none;background-color:#fff;border-radius:30px;flex-flow:column;flex:none;place-content:center flex-start;align-items:center;gap:14px;width:310px;padding:18px;display:flex;position:relative;box-shadow:0 26px 60px #1a1f2b26}
+.mit-desktop .mit-1e378ud{flex-flow:row;flex:none;place-content:center space-between;align-items:center;width:100%;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1folk74{flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:8px;width:min-content;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1w0p95x{height:34px;overflow:clip;will-change:none;background:linear-gradient(135deg,#0d6b6b 0%,#2aabee 58%,#7a3cff 100%);border-radius:10px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:34px;padding:0;display:flex;position:relative}
+.mit-desktop .mit-sxlt3g{flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:2px;width:min-content;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1gve6yk{height:18px;flex:none;width:18px;position:relative}
+.mit-desktop .mit-jno758{height:min-content;overflow:clip;will-change:none;background-color:#eaf6ff;border-radius:18px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:8px;width:100%;padding:14px;display:flex;position:relative}
+.mit-desktop .mit-1m498tl{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:18px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:8px;width:100%;padding:14px;display:flex;position:relative}
+.mit-desktop .mit-dg434x{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#f6f8fb;border-radius:999px;flex-flow:row;flex:none;place-content:center space-between;align-items:center;width:100%;padding:12px 14px;display:flex;position:relative}
+.mit-desktop .mit-10isuuh{height:28px;overflow:clip;will-change:none;background-color:#2aabee;border-radius:999px;flex:none;width:28px;position:relative}
+.mit-desktop .mit-10cv33x{flex-flow:column;flex:none;place-content:flex-start center;align-items:flex-start;gap:14px;width:250px;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-o4ktbo,.mit-1he90ra,.mit-1yo23o5{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:20px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:12px;width:100%;padding:16px;display:flex;position:relative;box-shadow:0 18px 44px #1a1f2b17}
+.mit-desktop .mit-7569p2,.mit-1d79e8{height:24px;flex:none;width:24px;position:relative}
+.mit-desktop .mit-1ltbf9b,.mit-q7nhxs,.mit-s1gdyj,.mit-pf6t8x,.mit-wj9jb,.mit-vr1pyb,.mit-13ek3d3,.mit-1f521ay,.mit-1k5rqfm,.mit-14cn0il,.mit-16tczgd,.mit-g6pf7n,.mit-1kmt3se,.mit-j62ned,.mit-1syldkv,.mit-1ql8lfi,.mit-ww2zuo,.mit-cg4vqr,.mit-1yit82u,.mit-1kii9y2,.mit-wu6ibb,.mit-fd3xq2,.mit-1p9zdii,.mit-14qx1i,.mit-114u422,.mit-9p7q16,.mit-g5l69a,.mit-fhag3v{white-space:pre-wrap;word-break:break-word;word-wrap:break-word;flex:1 0 0;width:1px;height:auto;position:relative}
+.mit-desktop .mit-u79ewm,.mit-1nkvxf5{height:24px;flex:none;width:24px;position:relative}
+.mit-desktop .mit-zp5vr0{height:24px;flex:none;width:24px;position:relative}
+.mit-desktop .mit-pikjiv{height:min-content;overflow:clip;will-change:none;background:linear-gradient(135deg,#0d6b6b 0%,#2aabee 100%);border-radius:22px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:4px;width:100%;padding:18px;display:flex;position:relative;box-shadow:0 18px 44px #2aabee38}
+.mit-desktop .mit-1h4gf12{max-width:1180px;height:min-content;overflow:clip;flex:none;grid-template-rows:repeat(1,minmax(0,1fr));grid-template-columns:repeat(4,minmax(220px,1fr));grid-auto-rows:minmax(0,1fr);justify-content:center;gap:14px;width:100%;padding:18px 24px 70px;display:grid;position:relative}
+.mit-desktop .mit-1tc9uph,.mit-zquh0o,.mit-w5d18f,.mit-4ccj1v{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:100%;overflow:clip;will-change:none;background-color:#fff;border-radius:22px;flex-flow:column;flex:none;place-content:flex-start;place-self:start;align-items:flex-start;gap:8px;width:100%;padding:20px;display:flex;position:relative}
+.mit-desktop .mit-1bmxqmy{flex-flow:column;flex:none;place-content:center flex-start;align-items:center;gap:34px;width:100%;max-width:1180px;height:min-content;padding:0 24px 70px;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-4r1i58{flex-flow:column;flex:none;place-content:center flex-start;align-items:center;gap:14px;width:760px;max-width:100%;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1fy3nmw{flex:none;grid-template-rows:repeat(1,minmax(0,1fr));grid-template-columns:repeat(4,minmax(230px,1fr));grid-auto-rows:minmax(0,1fr);justify-content:center;gap:16px;width:100%;height:min-content;padding:0;display:grid;position:relative;overflow:visible}
+.mit-desktop .mit-3wks1w,.mit-1eukq4f{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:100%;min-height:300px;overflow:clip;will-change:none;background-color:#fff;border-radius:28px;flex-flow:column;flex:none;grid-column:span 2;place-content:flex-start;place-self:start;align-items:flex-start;gap:20px;width:100%;padding:24px;display:flex;position:relative;box-shadow:0 20px 54px #1a1f2b12}
+.mit-desktop .mit-1urce6d{background:linear-gradient(135deg,#22c55e1f 0%,#2aabee1a 100%);border-radius:22px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:12px;width:100%;height:150px;padding:18px;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-u3gxww{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;background-color:#fff;border-radius:18px;flex-flow:column;flex:1 0 0;place-content:center;align-items:center;gap:0;width:1px;height:100%;padding:0;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0f}
+.mit-desktop .mit-95y4yc{background-color:#22c55e;border-radius:18px;flex-flow:column;flex:1 0 0;place-content:center;align-items:center;gap:0;width:1px;height:100%;padding:0;display:flex;position:relative;box-shadow:0 16px 34px #22c55e38}
+.mit-desktop .mit-mmelsm{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;background-color:#fff;border-radius:18px;flex-flow:column;flex:1 0 0;place-content:center;align-items:center;gap:0;width:1px;height:100%;padding:0;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0f}
+.mit-desktop .mit-1h4ge6n{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:100%;overflow:clip;will-change:none;background-color:#fff;border-radius:18px;flex-flow:column;flex:1.2 0 0;place-content:flex-start center;align-items:flex-start;gap:8px;width:1px;padding:16px;display:flex;position:relative}
+.mit-desktop .mit-1x9cdzz{height:150px;overflow:clip;will-change:none;background:linear-gradient(135deg,#2aabee1f 0%,#0d6b6b14 100%);border-radius:22px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:12px;width:100%;padding:18px;display:flex;position:relative}
+.mit-desktop .mit-24nb9w{height:10px;overflow:clip;will-change:none;background-color:#2aabee1f;border-radius:999px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:0;width:100%;padding:0;display:flex;position:relative}
+.mit-desktop .mit-1u33rkk{background-color:#2aabee;border-radius:999px;flex:none;width:82%;height:100%;position:relative}
+.mit-desktop .mit-vel64c{flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:8px;width:100%;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1h9nbib,.mit-czvt5v,.mit-122xehx{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:100%;min-height:300px;overflow:clip;will-change:none;background-color:#fff;border-radius:28px;flex-flow:column;flex:none;place-content:flex-start;place-self:start;align-items:flex-start;gap:18px;width:100%;padding:22px;display:flex;position:relative}
+.mit-desktop .mit-fexvl8{height:126px;overflow:clip;will-change:none;background:linear-gradient(135deg,#2aabee1f 0%,#ffffffd1 100%);border-radius:20px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:10px;width:100%;padding:16px;display:flex;position:relative}
+.mit-desktop .mit-d0j6xe{background-color:#2aabee;border-radius:999px;flex:none;width:78%;height:8px;position:relative}
+.mit-desktop .mit-1l6p99t{background-color:#2aabee3d;border-radius:999px;flex:none;width:52%;height:8px;position:relative}
+.mit-desktop .mit-9awoik{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:min-content;padding:7px 10px;display:flex;position:relative}
+.mit-desktop .mit-5w0nxq{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:100%;min-height:300px;overflow:clip;will-change:none;background-color:#fff;border-radius:28px;flex-flow:column;flex:none;place-content:flex-start;place-self:start;align-items:flex-start;gap:20px;width:100%;padding:22px;display:flex;position:relative;box-shadow:0 20px 54px #1a1f2b12}
+.mit-desktop .mit-1cyoq44{background:linear-gradient(135deg,#7a3cff1a 0%,#2aabee1a 100%);border-radius:20px;flex-flow:row;flex:none;place-content:flex-end flex-start;align-items:flex-end;gap:8px;width:100%;height:126px;padding:16px;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-kx31jl{background-color:#8ea1b2;border-radius:9px;flex:1 0 0;width:1px;height:42px;position:relative}
+.mit-desktop .mit-v1p15n{background-color:#2aabee;border-radius:9px;flex:1 0 0;width:1px;height:60px;position:relative}
+.mit-desktop .mit-188kfkz{background-color:#7a3cff;border-radius:9px;flex:1 0 0;width:1px;height:84px;position:relative}
+.mit-desktop .mit-1r1ghug{background-color:#22c55e;border-radius:9px;flex:1 0 0;width:1px;height:110px;position:relative}
+.mit-desktop .mit-1p6drzh{height:126px;overflow:clip;will-change:none;background:linear-gradient(135deg,#0d6b6b1a 0%,#ffffffe6 100%);border-radius:20px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:8px;width:100%;padding:0;display:flex;position:relative}
+.mit-desktop .mit-470qwz{height:126px;overflow:clip;will-change:none;background:linear-gradient(135deg,#7a3cff1a 0%,#ffffffe6 100%);border-radius:20px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:6px;width:100%;padding:0;display:flex;position:relative}
+.mit-desktop .mit-aqh30d{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:min-content;padding:7px 10px;display:flex;position:relative}
+.mit-desktop .mit-1wzjap8{max-width:1180px;height:min-content;overflow:clip;will-change:none;background:linear-gradient(135deg,#0d6b6b 0%,#2aabee 58%,#7a3cff 100%);border-radius:34px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:24px;width:100%;padding:34px 38px;display:flex;position:relative;box-shadow:0 28px 70px #2aabee38}
+.mit-desktop .mit-10kpbca{flex-flow:column;flex:1 0 0;place-content:flex-start;align-items:flex-start;gap:10px;width:1px;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-le7bo8,.mit-1gittr0,.mit-ve1gsr{white-space:pre-wrap;word-break:break-word;word-wrap:break-word;flex:none;width:100%;height:auto;position:relative}
+.mit-desktop .mit-1nqz9xo{cursor:pointer;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:18px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:6px;width:min-content;padding:17px 22px;text-decoration:none;display:flex;position:relative}
+.mit-desktop .mit-1ry2qut{flex-flow:column;flex:none;place-content:center flex-start;align-items:center;gap:26px;width:100%;max-width:1180px;height:min-content;padding:76px 24px 74px;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-6tctj2,.mit-17tev6p{flex-flow:column;flex:none;place-content:center flex-start;align-items:center;gap:14px;width:780px;max-width:100%;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-4ko2b9{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;background:radial-gradient(50% 50%,#fffffff5 0%,#f6f8fbc2 100%);border-radius:36px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:18px;width:100%;height:440px;padding:0;display:flex;position:relative;overflow:visible;box-shadow:0 28px 70px #1a1f2b14}
+.mit-desktop .mit-1wn9m5a{z-index:0;background:linear-gradient(90deg,#2aabee00 0%,#2aabeec7 56%,#7a3cff94 100%);border-radius:999px;flex:none;width:210px;height:4px;position:absolute;top:188px;left:262px;overflow:visible;box-shadow:0 0 16px #2aabee38}
+.mit-desktop .mit-812s56{z-index:0;background:linear-gradient(90deg,#0d6b6b00 0%,#0d6b6b9e 48%,#2aabeeb8 100%);border-radius:999px;flex:none;width:220px;height:4px;position:absolute;top:220px;left:252px;overflow:visible;box-shadow:0 0 16px #0d6b6b2e}
+.mit-desktop .mit-8ctdy8{z-index:0;background:linear-gradient(90deg,#7a3cff00 0%,#7a3cffa3 52%,#2aabeea8 100%);border-radius:999px;flex:none;width:205px;height:4px;position:absolute;top:252px;left:267px;overflow:visible;box-shadow:0 0 16px #7a3cff2e}
+.mit-desktop .mit-1i20qpn{z-index:0;background:linear-gradient(90deg,#7a3cff94 0%,#2aabeeb8 48%,#2aabee00 100%);border-radius:999px;flex:none;width:205px;height:4px;position:absolute;top:188px;left:634px;overflow:visible;box-shadow:0 0 16px #2aabee38}
+.mit-desktop .mit-1cv43uq{z-index:0;background:linear-gradient(90deg,#2aabeeb3 0%,#22c55e94 54%,#22c55e00 100%);border-radius:999px;flex:none;width:220px;height:4px;position:absolute;top:220px;left:634px;overflow:visible;box-shadow:0 0 16px #22c55e29}
+.mit-desktop .mit-nz362v{z-index:0;background:linear-gradient(90deg,#7a3cff9e 0%,#7a3cff85 52%,#7a3cff00 100%);border-radius:999px;flex:none;width:205px;height:4px;position:absolute;top:252px;left:634px;overflow:visible;box-shadow:0 0 16px #7a3cff2e}
+.mit-desktop .mit-1uf2np0{z-index:1;background-color:#2aabee;border-radius:999px;flex:none;width:11px;height:11px;position:absolute;top:184px;left:464px;box-shadow:0 0 14px #2aabeea6}
+.mit-desktop .mit-1pmbpkr{z-index:1;background-color:#7a3cff;border-radius:999px;flex:none;width:11px;height:11px;position:absolute;top:248px;left:632px;box-shadow:0 0 14px #7a3cff8c}
+.mit-desktop .mit-adzifm{flex-flow:column;flex:none;place-content:flex-start center;align-items:flex-start;gap:10px;width:210px;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1r1aasd{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:10px;width:min-content;padding:12px;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0f}
+.mit-desktop .mit-3difzw{height:24px;flex:none;width:24px;position:relative}
+.mit-desktop .mit-zx6vyz{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:10px;width:min-content;padding:12px;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0f}
+.mit-desktop .mit-j0jpaf,.mit-1grmr5z{height:24px;flex:none;width:24px;position:relative}
+.mit-desktop .mit-mppbrh{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:10px;width:min-content;padding:12px;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0f}
+.mit-desktop .mit-1bhm4dv{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:10px;width:min-content;padding:12px;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0f}
+.mit-desktop .mit-13b5b4r{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:min-content;padding:12px;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0f}
+.mit-desktop .mit-4vnawh{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:min-content;padding:12px;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0f}
+.mit-desktop .mit-1yfp63k{height:24px;flex:none;width:24px;position:relative}
+.mit-desktop .mit-xbunyb{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;background:radial-gradient(50% 50%,#fff 0%,#eaf6ffeb 52%,#2aabee29 78%,#7a3cff1a 100%);border-radius:999px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:12px;width:300px;height:300px;padding:0;display:flex;position:relative;overflow:visible;box-shadow:0 0 0 18px #2aabee1a,0 0 0 42px #7a3cff0f,0 24px 78px #2aabee33}
+.mit-desktop .mit-hgje79{height:146px;overflow:clip;will-change:none;border-radius:34px;flex:none;width:146px;position:relative}
+.mit-desktop .mit-1fe218z{white-space:pre-wrap;word-break:break-word;word-wrap:break-word;flex:none;width:230px;height:auto;position:relative}
+.mit-desktop .mit-h1tjuw{flex-flow:column;flex:none;place-content:flex-start center;align-items:flex-start;gap:7px;width:270px;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-43ibf3{background:linear-gradient(#2aabee73 0%,#7a3cff47 100%);border-radius:999px;flex:none;width:2px;height:10px;position:relative}
+.mit-desktop .mit-1gbltqw{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:10px;width:100%;padding:12px;display:flex;position:relative;box-shadow:0 12px 30px #1a1f2b0f}
+.mit-desktop .mit-12odthf,.mit-12mpcb3{height:22px;flex:none;width:22px;position:relative}
+.mit-desktop .mit-13hbsxu{background:linear-gradient(#7a3cff57 0%,#22c55e57 100%);border-radius:999px;flex:none;width:2px;height:10px;position:relative}
+.mit-desktop .mit-1ui7ucv{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:10px;width:100%;padding:12px;display:flex;position:relative;box-shadow:0 12px 30px #1a1f2b0f}
+.mit-desktop .mit-1wkpntr,.mit-18n0epl{height:22px;flex:none;width:22px;position:relative}
+.mit-desktop .mit-2v1gg8{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:10px;width:100%;padding:12px;display:flex;position:relative;box-shadow:0 12px 30px #1a1f2b0f}
+.mit-desktop .mit-1jrl5jf{height:22px;flex:none;width:22px;position:relative}
+.mit-desktop .mit-155giq3{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:16px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:10px;width:100%;padding:12px;display:flex;position:relative;box-shadow:0 12px 30px #1a1f2b0f}
+.mit-desktop .mit-u0ra1u{flex-flow:column;flex:none;place-content:center flex-start;align-items:center;gap:34px;width:100%;max-width:1180px;height:min-content;padding:0 24px 72px;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1e81p67{flex:none;grid-template-rows:repeat(1,minmax(0,1fr));grid-template-columns:repeat(6,minmax(150px,1fr));grid-auto-rows:minmax(0,1fr);justify-content:center;gap:16px;width:100%;height:min-content;padding:0;display:grid;position:relative;overflow:visible}
+.mit-desktop .mit-vnq3ic{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;min-height:455px;overflow:clip;will-change:none;background:linear-gradient(135deg,#fff 0%,#2aabee0f 100%);border-radius:32px;flex-flow:column;flex:none;grid-area:span 2/span 2;place-content:flex-start;place-self:start;align-items:flex-start;gap:18px;width:100%;padding:24px;display:flex;position:relative;box-shadow:0 24px 64px #1a1f2b14}
+.mit-desktop .mit-15rihd5{height:190px;overflow:clip;will-change:none;background:linear-gradient(135deg,#ffffffeb 0%,#2aabee14 100%);border-radius:20px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:10px;width:100%;padding:16px;display:flex;position:relative}
+.mit-desktop .mit-1v67du{background-color:#2aabee;border-radius:999px;flex:none;width:82%;height:8px;position:relative}
+.mit-desktop .mit-9xp144{background-color:#2aabee38;border-radius:999px;flex:none;width:58%;height:8px;position:relative}
+.mit-desktop .mit-160pr2e{flex:none;grid-template-rows:repeat(1,minmax(0,1fr));grid-template-columns:repeat(2,minmax(90px,1fr));grid-auto-rows:minmax(0,1fr);justify-content:center;gap:8px;width:100%;height:min-content;padding:0;display:grid;position:relative;overflow:visible}
+.mit-desktop .mit-1sowv4f{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:14px;flex-flow:row;flex:none;place-content:center flex-start;place-self:start;align-items:center;gap:8px;width:100%;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-1pnn997,.mit-133olnp,.mit-byho17,.mit-xrl6m7{height:18px;flex:none;width:18px;position:relative}
+.mit-desktop .mit-5vuk9e{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:14px;flex-flow:row;flex:none;place-content:center flex-start;place-self:start;align-items:center;gap:8px;width:100%;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-1s1c1pi,.mit-or8oel{height:18px;flex:none;width:18px;position:relative}
+.mit-desktop .mit-phdixr{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:14px;flex-flow:row;flex:none;place-content:center flex-start;place-self:start;align-items:center;gap:8px;width:100%;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-dhm16w{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:14px;flex-flow:row;flex:none;place-content:center flex-start;place-self:start;align-items:center;gap:8px;width:100%;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-1i6u1b5,.mit-nrwcbf,.mit-rmsr74{height:18px;flex:none;width:18px;position:relative}
+.mit-desktop .mit-1v8eo7d{flex-flow:wrap;flex:none;place-content:center flex-start;align-items:center;gap:8px;width:100%;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-93lzdv{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;min-height:455px;overflow:clip;will-change:none;background:radial-gradient(50% 50%,#fff 0%,#7a3cff12 100%);border-radius:26px;flex-flow:column;flex:none;grid-area:span 2/span 2;place-content:flex-start;place-self:start;align-items:flex-start;gap:18px;width:100%;padding:24px;display:flex;position:relative;box-shadow:0 24px 64px #1a1f2b14}
+.mit-desktop .mit-2pqazd{height:190px;overflow:clip;will-change:none;background:radial-gradient(50% 50%,#ffffffeb 0%,#7a3cff1a 100%);border-radius:20px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:8px;width:100%;padding:0;display:flex;position:relative}
+.mit-desktop .mit-1kit0v0{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:102px;overflow:clip;will-change:none;background-color:#fff;border-radius:999px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:6px;width:102px;padding:0;display:flex;position:relative;box-shadow:0 0 0 16px #2aabee12}
+.mit-desktop .mit-11xwu5s{height:54px;overflow:clip;will-change:none;border-radius:14px;flex:none;width:54px;position:relative}
+.mit-desktop .mit-1k8atrn{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:min-content;padding:7px 10px;display:flex;position:absolute;top:22px;left:24px}
+.mit-desktop .mit-ddsouc{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:min-content;padding:7px 10px;display:flex;position:absolute;top:150px;left:18px}
+.mit-desktop .mit-dgts1i{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:min-content;padding:7px 10px;display:flex;position:absolute;top:150px;right:18px}
+.mit-desktop .mit-1s0m8ts{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;min-height:455px;overflow:clip;will-change:none;background:linear-gradient(135deg,#fff 0%,#22c55e12 100%);border-radius:26px;flex-flow:column;flex:none;grid-area:span 2/span 2;place-content:flex-start;place-self:start;align-items:flex-start;gap:18px;width:100%;padding:24px;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0d}
+.mit-desktop .mit-wbg9nd{height:190px;overflow:clip;will-change:none;background:linear-gradient(135deg,#ffffffeb 0%,#22c55e1a 100%);border-radius:20px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:8px;width:100%;padding:0;display:flex;position:relative}
+.mit-desktop .mit-1scsj6x{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:7px;width:min-content;padding:8px 11px;display:flex;position:relative}
+.mit-desktop .mit-vgoxpz{height:16px;flex:none;width:16px;position:relative}
+.mit-desktop .mit-1yoo57u{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:7px;width:min-content;padding:8px 10px;display:flex;position:relative}
+.mit-desktop .mit-hsmaho{height:16px;flex:none;width:16px;position:relative}
+.mit-desktop .mit-1ka26zh{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:14px;flex-flow:column;flex:none;place-content:flex-start center;align-items:flex-start;gap:5px;width:82%;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-i7g295{background-color:#22c55e;border-radius:999px;flex:none;width:88%;height:6px;position:relative}
+.mit-desktop .mit-1ajmb90{background-color:#22c55e42;border-radius:999px;flex:none;width:62%;height:6px;position:relative}
+.mit-desktop .mit-wxi2f4,.mit-z4ncfl{flex-flow:column;flex:none;place-content:center flex-start;align-items:center;gap:28px;width:100%;max-width:1180px;height:min-content;padding:0 24px 88px;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-5p3jur{flex-flow:column;flex:none;place-content:center flex-start;align-items:center;gap:28px;width:100%;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1a7afvb{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;background:linear-gradient(#fff 0%,#f9fbfd 100%);border-radius:34px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:28px;width:100%;height:min-content;padding:34px;display:flex;position:relative;overflow:visible;box-shadow:0 24px 64px #1a1f2b14}
+.mit-desktop .mit-1pp9zve,.mit-1bpwhiz{white-space:pre-wrap;word-break:break-word;word-wrap:break-word;flex:none;width:680px;max-width:100%;height:auto;position:relative}
+.mit-desktop .mit-1q2f5ic{flex:none;grid-template-rows:repeat(1,minmax(0,1fr));grid-template-columns:repeat(4,minmax(180px,1fr));grid-auto-rows:minmax(0,1fr);justify-content:center;gap:16px;width:100%;height:min-content;padding:0;display:grid;position:relative;overflow:visible}
+.mit-desktop .mit-zilfiw,.mit-58uw80,.mit-gurce6,.mit-1ur4wy1{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:100%;min-height:260px;overflow:clip;will-change:none;background-color:#fff;border-radius:28px;flex-flow:column;flex:none;place-content:flex-start;place-self:start;align-items:flex-start;gap:14px;width:100%;padding:18px;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0d}
+.mit-desktop .mit-1pu0s7f{height:96px;overflow:clip;will-change:none;background:linear-gradient(135deg,#0d6b6b1a 0%,#ffffffe6 100%);border-radius:20px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:8px;width:100%;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-6q4ioq{height:28px;flex:none;width:28px;position:relative}
+.mit-desktop .mit-18z7zfp{flex-flow:row;flex:none;place-content:center;align-items:center;gap:5px;width:min-content;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1h206df{background-color:#0d6b6b;border-radius:999px;flex:none;width:22px;height:6px;position:relative}
+.mit-desktop .mit-1uafkj6{background-color:#0d6b6b47;border-radius:999px;flex:none;width:38px;height:6px;position:relative}
+.mit-desktop .mit-y4ldam{height:96px;overflow:clip;will-change:none;background:linear-gradient(135deg,#2aabee1f 0%,#ffffffe6 100%);border-radius:20px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:8px;width:100%;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-1jqk6ey{height:28px;flex:none;width:28px;position:relative}
+.mit-desktop .mit-m8lcox{flex-flow:row;flex:none;place-content:center;align-items:center;gap:6px;width:min-content;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1lws1d0{background-color:#2aabee;border-radius:999px;flex:none;width:8px;height:8px;position:relative}
+.mit-desktop .mit-9zmjqt{background-color:#2aabee4d;border-radius:999px;flex:none;width:8px;height:8px;position:relative}
+.mit-desktop .mit-1qyjc7g{background-color:#2aabee2e;border-radius:999px;flex:none;width:8px;height:8px;position:relative}
+.mit-desktop .mit-173mrit{height:96px;overflow:clip;will-change:none;background:linear-gradient(135deg,#7a3cff1a 0%,#ffffffe6 100%);border-radius:20px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:8px;width:100%;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-ww61ux{height:28px;flex:none;width:28px;position:relative}
+.mit-desktop .mit-1ckaa57{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:min-content;padding:6px 9px;display:flex;position:relative}
+.mit-desktop .mit-12dafq0{height:96px;overflow:clip;will-change:none;background:linear-gradient(135deg,#22c55e1c 0%,#ffffffe6 100%);border-radius:20px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:8px;width:100%;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-1xjvy3m{height:28px;flex:none;width:28px;position:relative}
+.mit-desktop .mit-66xcgr{flex-flow:column;flex:none;place-content:flex-start center;align-items:flex-start;gap:5px;width:72px;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1flgh9k{background-color:#22c55e;border-radius:999px;flex:none;width:100%;height:6px;position:relative}
+.mit-desktop .mit-1k2tsr4{background-color:#22c55e47;border-radius:999px;flex:none;width:62%;height:6px;position:relative}
+.mit-desktop .mit-xmlud9{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background:linear-gradient(#fff 0%,#f6f8fb 100%);border-radius:34px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:28px;width:100%;padding:34px;display:flex;position:relative;box-shadow:0 24px 64px #1a1f2b14}
+.mit-desktop .mit-1usv4vp{z-index:1;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:12px;width:100%;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1i6epon,.mit-1hkxw8m,.mit-1sv1a6q,.mit-9nxrd9{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;min-height:110px;overflow:clip;will-change:none;background-color:#fff;border-radius:24px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:18px;width:100%;padding:18px;display:flex;position:relative;box-shadow:0 12px 28px #1a1f2b0d}
+.mit-desktop .mit-uqceat,.mit-12u0fgw{height:72px;overflow:clip;will-change:none;background-color:#2aabee14;border-radius:20px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:6px;width:72px;padding:0;display:flex;position:relative}
+.mit-desktop .mit-ez191n,.mit-lp3azd{height:32px;overflow:clip;will-change:none;background-color:#2aabee1a;border-radius:12px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:32px;padding:0;display:flex;position:relative}
+.mit-desktop .mit-1jsx4ee{height:48px;overflow:clip;will-change:none;background-color:#2aabee14;border-radius:14px;flex-flow:row;flex:1 0 0;place-content:center flex-start;align-items:center;gap:8px;width:1px;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-5fw8of{height:min-content;overflow:clip;will-change:none;background-color:#2aabee;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:min-content;padding:8px 10px;display:flex;position:relative}
+.mit-desktop .mit-1ohuo7u,.mit-p7oqkt{height:20px;flex:none;width:20px;position:relative}
+.mit-desktop .mit-90f1si{height:72px;overflow:clip;will-change:none;background-color:#7a3cff14;border-radius:20px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:6px;width:72px;padding:0;display:flex;position:relative}
+.mit-desktop .mit-mm6poi{height:32px;overflow:clip;will-change:none;background-color:#7a3cff1a;border-radius:12px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:32px;padding:0;display:flex;position:relative}
+.mit-desktop .mit-8rfihh,.mit-13nfqth,.mit-14bxtqx{height:18px;flex:none;width:18px;position:relative}
+.mit-desktop .mit-1495n5o{height:48px;overflow:clip;will-change:none;background-color:#7a3cff14;border-radius:14px;flex-flow:column;flex:1 0 0;place-content:flex-start center;align-items:flex-start;gap:7px;width:1px;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-14sgsv5{background-color:#7a3cff;border-radius:999px;flex:none;width:82%;height:7px;position:relative}
+.mit-desktop .mit-9dbigg{background-color:#7a3cff42;border-radius:999px;flex:none;width:56%;height:7px;position:relative}
+.mit-desktop .mit-19l763f{height:48px;overflow:clip;will-change:none;background-color:#2aabee14;border-radius:14px;flex-flow:row;flex:1 0 0;place-content:center flex-start;align-items:center;gap:9px;width:1px;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-7e1k6f{height:22px;flex:none;width:22px;position:relative}
+.mit-desktop .mit-jgml3a{height:72px;overflow:clip;will-change:none;background-color:#22c55e14;border-radius:20px;flex-flow:column;flex:none;place-content:center;align-items:center;gap:6px;width:72px;padding:0;display:flex;position:relative}
+.mit-desktop .mit-zv94jq{height:32px;overflow:clip;will-change:none;background-color:#22c55e1a;border-radius:12px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:32px;padding:0;display:flex;position:relative}
+.mit-desktop .mit-1vpp0vq{height:48px;overflow:clip;will-change:none;background-color:#22c55e17;border-radius:14px;flex-flow:row;flex:1 0 0;place-content:center flex-start;align-items:center;gap:8px;width:1px;padding:10px;display:flex;position:relative}
+.mit-desktop .mit-m78cnt{z-index:0;background:linear-gradient(#2aabee85 0%,#7a3cff6b 52%,#22c55e70 100%);border-radius:999px;flex:none;width:3px;height:438px;position:absolute;top:128px;left:70px;box-shadow:0 0 16px #2aabee2e}
+.mit-desktop .mit-1u59ixy{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:min-content;overflow:clip;will-change:none;background-color:#2aabee14;border-radius:18px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:10px;width:100%;padding:12px 14px;display:flex;position:relative}
+.mit-desktop .mit-1n8zsbq{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;background:linear-gradient(135deg,#fff 0%,#f8fbfe 100%);border-radius:36px;flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:42px;width:100%;height:min-content;padding:42px;display:flex;position:relative;overflow:visible;box-shadow:0 30px 80px #1a1f2b1a}
+.mit-desktop .mit-rxaf6x{flex-flow:column;flex:1 0 0;place-content:flex-start;align-items:flex-start;gap:18px;width:1px;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1dlmcvr{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;background-color:#fff;border-radius:28px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:12px;width:430px;height:min-content;padding:24px;display:flex;position:relative;overflow:visible;box-shadow:0 18px 44px #1a1f2b0f}
+.mit-desktop .mit-wvjyg7{flex:none;grid-template-rows:repeat(1,minmax(0,1fr));grid-template-columns:repeat(2,minmax(150px,1fr));grid-auto-rows:minmax(0,1fr);justify-content:center;gap:10px;width:100%;height:min-content;padding:0;display:grid;position:relative;overflow:visible}
+.mit-desktop .mit-12ldybf,.mit-1pkleq7,.mit-12v4sf0,.mit-1k88g17,.mit-18wzl56,.mit-3ukroy{height:min-content;overflow:clip;will-change:none;background-color:#f6f8fb;border-radius:14px;flex-flow:row;flex:none;place-content:center flex-start;place-self:start;align-items:center;gap:8px;width:100%;padding:11px;display:flex;position:relative}
+.mit-desktop .mit-awnloa{cursor:pointer;height:min-content;overflow:clip;will-change:none;background-color:#2aabee;border-radius:16px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:100%;padding:15px 18px;text-decoration:none;display:flex;position:relative;box-shadow:0 12px 26px #2aabee2e}
+.mit-desktop .mit-fy3r39{flex-flow:column;flex:none;place-content:center flex-start;align-items:center;gap:28px;width:100%;max-width:1180px;height:min-content;padding:0 24px 80px;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-vk5liw{flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:18px;width:920px;max-width:100%;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1eowo8l{flex:none;grid-template-rows:repeat(1,min-content);grid-template-columns:repeat(2,minmax(280px,1fr));grid-auto-rows:min-content;justify-content:center;gap:10px 14px;width:100%;height:min-content;padding:0;display:grid;position:relative;overflow:visible}
+.mit-desktop .mit-1arzw9,.mit-19jt4m,.mit-gbjgqh,.mit-1gwwa3q,.mit-5gx6ut,.mit-obb3ko,.mit-b2pnei,.mit-yyk5lw{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;cursor:pointer;height:auto;overflow:clip;will-change:none;background-color:#fff;border-radius:18px;flex-flow:row;flex:none;place-content:center flex-start;place-self:start;align-items:center;gap:16px;width:100%;padding:14px 16px;display:flex;position:relative}
+.mit-desktop .mit-7jc1cg,.mit-6hofp,.mit-14l4843,.mit-5v3f6o,.mit-1gey8cp,.mit-bgt1cz,.mit-555670,.mit-bumdlb{-webkit-user-select:none;user-select:none;white-space:pre-wrap;word-break:break-word;word-wrap:break-word;flex:1 0 0;width:1px;height:auto;position:relative}
+.mit-desktop .mit-190nj59,.mit-17syl0h,.mit-13zgjdo,.mit-1oe2dte,.mit-6q5pd4,.mit-5pa6b7,.mit-z09kwk,.mit-hokqdg{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;height:28px;overflow:clip;will-change:none;background-color:#f6f8fb;border-radius:999px;flex-flow:row;flex:none;place-content:center;align-items:center;gap:0;width:28px;padding:0;display:flex;position:relative}
+.mit-desktop .mit-1s3dbzb{--border-bottom-width:1px;--border-left-width:1px;--border-right-width:1px;--border-top-width:1px;max-width:100%;height:min-content;overflow:clip;will-change:none;background-color:#fff;border-radius:32px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:18px;width:760px;padding:28px;display:flex;position:relative;box-shadow:0 28px 70px #1a1f2b1a}
+.mit-desktop .mit-1waxqkd{flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:12px;width:100%;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-xla7nn,.mit-1imb7fo,.mit-1lzatob,.mit-pwr4d1{flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:7px;width:100%;height:min-content;padding:0;display:flex;position:relative}
+.mit-desktop .mit-1apms6n,.mit-1iunhxd,.mit-xvwmm6{flex:none;width:100%;height:44px;position:relative}
+.mit-desktop .mit-1qwfgjf{flex:none;width:100%;height:104px;position:relative}
+.mit-desktop .mit-1y53hpc-container{flex:none;width:100%;height:auto;position:relative}
+.mit-desktop .mit-iws7i4{flex-flow:row;flex:none;place-content:center flex-start;align-items:center;gap:24px;width:100%;max-width:1180px;height:min-content;padding:34px 24px 48px;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-173tpu7{flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:8px;width:360px;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+.mit-desktop .mit-1sdgmpq{flex-flow:wrap;flex:none;place-content:center;align-items:center;gap:14px 20px;width:min-content;height:min-content;padding:0;display:flex;position:relative;overflow:visible}
+
+/* === TEXT PRESETS === */
+.text-preset-1wu8czi{}
+.text-preset-1t75fkg{font-family:"Geist",sans-serif;font-size:64px;font-weight:700;font-style:normal;line-height:1.02em;letter-spacing:-.045em;color:#1a1f2b;text-align:start;text-wrap:balance;}
+.text-preset-5mwvuw{font-family:"Geist",sans-serif;font-size:17px;font-weight:400;font-style:normal;line-height:1.55em;letter-spacing:-.01em;color:#5e6b7f;text-align:start;}
+.text-preset-aqyig4{font-family:"Geist",sans-serif;font-size:44px;font-weight:700;font-style:normal;line-height:1.08em;letter-spacing:-.035em;color:#1a1f2b;text-align:start;text-wrap:balance;}
+
+/* === TEXT BASE === */
+p, div, h1, h2, h3, h4, h5, h6, ol, ul, li, span, a, mark, code, blockquote {
+  margin: 0;
+  padding: 0;
+}
+p, div, h1, h2, h3, h4, h5, h6, li, ol, ul, span, mark {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #1a1f2b;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-transform: none;
+  text-decoration: none;
+  line-height: 1.2em;
+  text-align: start;
+}
+strong { font-weight: 700; }
+em { font-style: italic; }
+a { cursor: pointer; text-decoration: none; color: inherit; }
+a:hover { color: inherit; }
+
+</style>
+<style>
+
+
+/* === RESPONSIVE — v2.1: scale + mobile === */
+
+/* Tablet (769-1199px): scale desktop to fit viewport */
+@media (min-width: 769px) and (max-width: 1199px) {
+      html, body { overflow-x: hidden; margin: 0; padding: 0; }
+      #main { transform-origin: top center; transform: scale(calc((100vw - 40px) / 1200)); width: 1200px; margin: 0 auto; overflow: hidden; }
+    }
+
+/* Mobile (≤768px): hide desktop, show mobile version */
+@media (max-width: 768px) {
+  #main {
+    display: none !important;
+  }
+  .mobile-version {
+    display: block !important;
+  }
+}
+
+/* Desktop (≥769px): hide mobile version */
+@media (min-width: 769px) {
+  .mobile-version {
+    display: none !important;
+  }
+}
+
+
+</style>
+<style>
+
+/* === ADAPTIVE + FORM OVERRIDES FOR V1 === */
+
+/* Tablet scaling for desktop layout: dynamic scale, no horizontal scroll */
+@media (max-width: 1199px) and (min-width: 769px) {
+  html, body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  #main {
+    transform-origin: top center;
+    transform: scale(calc((100vw - 40px) / 1200));
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+}
+
+/* Mobile version entrance animations */
+.mobile-version .animate-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.mobile-version .animate-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile form status messages */
+#form-status-mobile {
+  font-size: 13px;
+  margin-top: 10px;
+  text-align: center;
+  min-height: 18px;
+}
+#form-status-mobile.success { color: #22c55e; }
+#form-status-mobile.error { color: #dc2626; }
+
+</style>
+</head>
+<body>
+<div class="mobile-version" id="mobile-version" style="display:none;font-family:'Geist',-apple-system,BlinkMacSystemFont,sans-serif;background:#F5F7FA;min-height:100vh;color:#1A1F2B">
+<!-- ===== MOBILE NAV ===== -->
+<nav style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#fff;border-bottom:1px solid #e1e8f2;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+<div style="display:flex;align-items:center;gap:8px">
+<div style="width:34px;height:34px;background:linear-gradient(135deg,#0d6b6b,#2aabee);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px">M</div>
+<span style="font-weight:700;font-size:16px;color:#1A1F2B">МИТ ассистент</span>
+</div>
+<a href="#lead-form-mobile" style="background:#2aabee;color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;font-size:13px">Запустить</a>
+</nav>
+<!-- ===== HERO ===== -->
+<section style="padding:36px 16px 28px;text-align:center">
+<div style="display:inline-block;background:#2aabee14;border:1px solid #2aabee33;color:#1685C7;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:16px">AI-агент в Telegram</div>
+<h1 style="font-size:30px;font-weight:700;line-height:1.15;margin:0 0 10px;color:#1A1F2B">Персональный AI-ассистент в Telegram для порядка в работе</h1>
+<p style="font-size:15px;color:#5E6B7F;line-height:1.5;margin:0 0 24px">МИТ берёт рутину на себя: держит контекст, выполняет задачи и напоминает о важном.</p>
+<div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+<a href="#lead-form-mobile" style="background:#2aabee;color:#fff;padding:14px 32px;border-radius:12px;text-decoration:none;font-weight:700;font-size:15px;width:100%;max-width:320px;display:block;text-align:center;box-shadow:0 8px 24px #2aabee2e">Запустить МИТ Ассистент</a>
+<a href="#capabilities-mobile" style="color:#1A1F2B;text-decoration:none;font-size:14px;font-weight:600;padding:10px">Посмотреть возможности</a>
+</div>
+</section>
+<!-- ===== TELEGRAM MOCK ===== -->
+<section style="padding:0 16px 40px">
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:24px;overflow:hidden;max-width:380px;margin:0 auto;box-shadow:0 16px 48px rgba(26,31,43,0.08)">
+<!-- Chat Header -->
+<div style="background:#f6f8fb;padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #e1e8f2">
+<img alt="МИТ" height="36" src="logo.svg" style="width:36px;height:36px;border-radius:50%;display:block;flex-shrink:0" width="36"/>
+<div style="flex:1">
+<div style="font-weight:700;font-size:14px;color:#1A1F2B">МИТ</div>
+<div style="font-size:11px;color:#8EA1B2">AI-агент · 24/7</div>
+</div>
+<svg height="20" style="flex-shrink:0" viewbox="0 0 24 24" width="20"><circle cx="12" cy="5" fill="#8EA1B2" r="1.5"></circle><circle cx="12" cy="12" fill="#8EA1B2" r="1.5"></circle><circle cx="12" cy="19" fill="#8EA1B2" r="1.5"></circle></svg>
+</div>
+<!-- Messages -->
+<div style="padding:14px">
+<div style="background:#f0f4f8;border-radius:14px 14px 14px 4px;padding:10px 14px;margin-bottom:8px;font-size:13px;font-weight:500;color:#1A1F2B;max-width:88%;line-height:1.35">Подготовь отчёт по продажам за апрель, сохрани в папку «Отчёты», поставь напоминание и создай встречу в календаре.</div>
+<div style="background:#2aabee;border-radius:14px 14px 4px 14px;padding:10px 14px;margin-bottom:8px;font-size:13px;font-weight:700;color:#fff;max-width:88%;margin-left:auto">Понял. Выполняю план:</div>
+<div style="background:#2aabee;border-radius:14px 14px 4px 14px;padding:10px 14px;margin-bottom:10px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.9);max-width:88%;margin-left:auto;line-height:1.55">✓ Анализ данных по продажам<br/>✓ Формирование отчёта<br/>✓ Сохранение файла<br/>✓ Напоминание<br/>✓ Встреча в календаре</div>
+<!-- Result Cards -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:8px 10px;font-size:11px;font-weight:600;color:#1A1F2B;display:flex;align-items:center;gap:6px"><span style="color:#22c55e;font-size:14px">✓</span> Встреча создана<br/><span style="font-weight:500;color:#5E6B7F;font-size:10px">Сегодня, 10:00–11:00</span></div>
+<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:8px 10px;font-size:11px;font-weight:600;color:#1A1F2B;display:flex;align-items:center;gap:6px"><span style="color:#2aabee;font-size:14px">📎</span> Файл сохранён<br/><span style="font-weight:500;color:#5E6B7F;font-size:10px">Отчёт_Апрель_2024.pdf</span></div>
+<div style="background:#fefce8;border:1px solid #fef08a;border-radius:12px;padding:8px 10px;font-size:11px;font-weight:600;color:#1A1F2B;display:flex;align-items:center;gap:6px"><span style="color:#eab308;font-size:14px">🔔</span> Напоминание<br/><span style="font-weight:500;color:#5E6B7F;font-size:10px">Завтра, 09:50</span></div>
+<div style="background:linear-gradient(135deg,#0d6b6b,#2aabee);border-radius:12px;padding:8px 10px;font-size:13px;font-weight:800;color:#fff;display:flex;flex-direction:column;justify-content:center">Продажи: +24%<br/><span style="font-weight:500;font-size:10px;opacity:0.78">Рост к прошлому месяцу</span></div>
+</div>
+<!-- Input -->
+<div style="margin-top:10px;background:#f6f8fb;border:1px solid #e1e8f2;border-radius:14px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between">
+<span style="font-size:12px;color:#8EA1B2">Напишите сообщение…</span>
+<div style="width:24px;height:24px;background:#2aabee;border-radius:50%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== ADVANTAGES (4 cards) ===== -->
+<section style="padding:0 16px 40px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px 14px;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:36px;height:36px;background:#2aabee14;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:10px">
+<svg height="18" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" fill="none" r="9" stroke="#2aabee" stroke-width="2"></circle><circle cx="12" cy="8" fill="#2aabee" r="2"></circle><path d="M8 18c0-2.2 1.8-4 4-4s4 1.8 4 4" fill="none" stroke="#2aabee" stroke-linecap="round" stroke-width="2"></path></svg>
+</div>
+<div style="font-weight:700;font-size:16px;margin-bottom:4px;color:#1A1F2B">Контекст</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.45">Задачи, диалоги и договорённости остаются в памяти.</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px 14px;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:36px;height:36px;background:#7a3cff14;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:10px">
+<svg height="18" viewbox="0 0 24 24" width="18"><path d="M4 4h16v2H4zm0 6h16v2H4zm0 6h10v2H4z" fill="#7a3cff"></path></svg>
+</div>
+<div style="font-weight:700;font-size:16px;margin-bottom:4px;color:#1A1F2B">Рутина</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.45">Повторяющиеся действия выполняются без вашего участия.</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px 14px;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:36px;height:36px;background:#22c55e14;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:10px">
+<svg height="18" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" fill="none" r="9" stroke="#22c55e" stroke-width="2"></circle><polyline fill="none" points="8,12 11,15 16,9" stroke="#22c55e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline></svg>
+</div>
+<div style="font-weight:700;font-size:16px;margin-bottom:4px;color:#1A1F2B">Контроль</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.45">Важное не теряется и приходит вовремя.</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px 14px;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:36px;height:36px;background:#0d6b6b14;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:10px">
+<svg height="18" viewbox="0 0 24 24" width="18"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="#0d6b6b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div style="font-weight:700;font-size:16px;margin-bottom:4px;color:#1A1F2B">Навыки</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.45">МИТ учится работать по вашим правилам.</div>
+</div>
+</div>
+</section>
+<!-- ===== CAPABILITIES (6 bento cards) ===== -->
+<section id="capabilities-mobile" style="padding:0 16px 40px">
+<div style="text-align:center;margin-bottom:24px">
+<h2 style="font-size:24px;font-weight:700;margin:0 0 8px;color:#1A1F2B">Что уже умеет МИТ ассистент</h2>
+<p style="font-size:14px;color:#5E6B7F;line-height:1.5;margin:0">Базовые навыки уже внутри: задачи, календарь, напоминания, идеи, документы, таблицы и база знаний работают прямо в Telegram.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<!-- Calendar -->
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:20px;padding:18px;box-shadow:0 8px 24px rgba(26,31,43,0.05)">
+<div style="display:flex;gap:8px;margin-bottom:14px">
+<div style="background:#f6f8fb;border:1px solid #e1e8f2;border-radius:12px;padding:8px 12px;text-align:center;font-weight:800;font-size:18px;color:#8EA1B2">09</div>
+<div style="background:#2aabee;border-radius:12px;padding:8px 12px;text-align:center;font-weight:800;font-size:22px;color:#fff">10</div>
+<div style="background:#f6f8fb;border:1px solid #e1e8f2;border-radius:12px;padding:8px 12px;text-align:center;font-weight:800;font-size:18px;color:#2aabee">11</div>
+<div style="background:#f6f8fb;border:1px solid #e1e8f2;border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;justify-content:center">
+<div style="font-weight:800;font-size:12px;color:#1A1F2B">Встреча создана</div>
+<div style="font-size:10px;color:#5E6B7F">Сегодня · 10:00–11:00</div>
+</div>
+</div>
+<div style="font-weight:800;font-size:18px;color:#1A1F2B;margin-bottom:4px">Календарь</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.45">Создаёт встречи, переносит события и показывает расписание.</div>
+</div>
+<!-- Tasks -->
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:20px;padding:18px;box-shadow:0 8px 24px rgba(26,31,43,0.05)">
+<div style="margin-bottom:14px">
+<div style="font-weight:700;font-size:13px;color:#1685C7;margin-bottom:8px">Рабочий план · сегодня</div>
+<div style="font-weight:600;font-size:14px;color:#1A1F2B;margin-bottom:4px">✓ Отчёт по продажам · 82%</div>
+<div style="font-weight:600;font-size:14px;color:#1A1F2B;margin-bottom:8px">✓ Согласовать встречу · 10:00</div>
+<div style="background:#f6f8fb;border-radius:999px;height:6px;overflow:hidden"><div style="background:#2aabee;height:6px;width:82%;border-radius:999px"></div></div>
+</div>
+<div style="font-weight:800;font-size:18px;color:#1A1F2B;margin-bottom:4px">Задачи</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.45">Создаёт задачи, фиксирует сроки и помогает контролировать выполнение.</div>
+</div>
+<!-- Documents -->
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:20px;padding:18px;box-shadow:0 8px 24px rgba(26,31,43,0.05)">
+<div style="margin-bottom:14px">
+<div style="font-weight:700;font-size:14px;color:#1A1F2B;margin-bottom:6px">Отчёт_Апрель.pdf</div>
+<div style="background:#f6f8fb;border-radius:8px;height:4px;width:70%;margin-bottom:4px"></div>
+<div style="background:#f6f8fb;border-radius:8px;height:4px;width:45%;margin-bottom:8px"></div>
+<div style="display:inline-block;background:#2aabee14;border:1px solid #2aabee33;border-radius:8px;padding:4px 10px;font-weight:700;font-size:10px;color:#1685C7">сохранено в «Отчёты»</div>
+</div>
+<div style="font-weight:800;font-size:18px;color:#1A1F2B;margin-bottom:4px">Документы</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.45">Создаёт черновики, сохраняет материалы и помогает найти нужное.</div>
+</div>
+<!-- Excel / Tables -->
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:20px;padding:18px;box-shadow:0 8px 24px rgba(26,31,43,0.05)">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:14px">
+<div style="background:#f6f8fb;border-radius:6px;height:24px"></div>
+<div style="background:#f6f8fb;border-radius:6px;height:24px"></div>
+<div style="background:#f6f8fb;border-radius:6px;height:24px"></div>
+<div style="background:#f6f8fb;border-radius:6px;height:24px"></div>
+</div>
+<div style="font-weight:800;font-size:18px;color:#1A1F2B;margin-bottom:4px">Excel и таблицы</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.45">Помогает разбирать таблицы, готовить сводки, отчёты и выводы по данным.</div>
+</div>
+<!-- Knowledge Base -->
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:20px;padding:18px;box-shadow:0 8px 24px rgba(26,31,43,0.05)">
+<div style="margin-bottom:14px">
+<div style="font-weight:700;font-size:14px;color:#0d6b6b;margin-bottom:4px">инструкция → ответ</div>
+<div style="font-weight:600;font-size:11px;color:#5E6B7F">по вашим правилам</div>
+</div>
+<div style="font-weight:800;font-size:18px;color:#1A1F2B;margin-bottom:4px">База знаний</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.45">Отвечает по вашим правилам, инструкциям и шаблонам.</div>
+</div>
+<!-- Ideas -->
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:20px;padding:18px;box-shadow:0 8px 24px rgba(26,31,43,0.05)">
+<div style="margin-bottom:14px">
+<div style="font-weight:700;font-size:13px;color:#7a3cff;margin-bottom:6px">inbox → идея → заметка</div>
+<div style="display:inline-block;background:#7a3cff14;border:1px solid #7a3cff33;border-radius:8px;padding:4px 10px;font-weight:700;font-size:10px;color:#7a3cff">3 входящих</div>
+</div>
+<div style="font-weight:800;font-size:18px;color:#1A1F2B;margin-bottom:4px">Идеи и заметки</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.45">Сохраняет мысли, идеи и входящие заметки в отдельный inbox.</div>
+</div>
+</div>
+</section>
+<!-- ===== PROMO CTA ===== -->
+<section style="padding:0 16px 40px">
+<div style="background:linear-gradient(135deg,#0d6b6b,#2aabee);border-radius:24px;padding:32px 20px;text-align:center;color:#fff;box-shadow:0 16px 48px rgba(13,107,107,0.2)">
+<h2 style="font-size:22px;font-weight:800;margin:0 0 8px;line-height:1.15">Готовы проверить МИТ на своей задаче?</h2>
+<p style="font-size:14px;opacity:0.85;margin:0 0 24px;line-height:1.45">Оставьте заявку — и ассистент начнёт установку под ваш рабочий контекст.</p>
+<a href="#lead-form-mobile" style="background:#fff;color:#1A1F2B;padding:14px 28px;border-radius:14px;text-decoration:none;font-weight:800;font-size:15px;display:inline-block;box-shadow:0 8px 24px rgba(0,0,0,0.1)">Запустить МИТ ассистента</a>
+<div style="font-size:11px;opacity:0.6;margin-top:10px">Откроется форма заявки</div>
+</div>
+</section>
+<!-- ===== INTEGRATIONS ===== -->
+<section id="integrations-mobile" style="padding:0 16px 40px">
+<div style="text-align:center;margin-bottom:24px">
+<h2 style="font-size:24px;font-weight:700;margin:0 0 8px;color:#1A1F2B">МИТ связан с тем, где уже идёт ваша работа</h2>
+<p style="font-size:14px;color:#5E6B7F;line-height:1.5;margin:0">Ассистент подключается к привычным источникам и инструментам.</p>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:24px;padding:24px 16px;box-shadow:0 12px 36px rgba(26,31,43,0.06)">
+<div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px">
+<span style="background:#f6f8fb;border:1px solid #e1e8f2;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#1A1F2B">📨 Сообщения</span>
+<span style="background:#f6f8fb;border:1px solid #e1e8f2;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#1A1F2B">📎 Файлы</span>
+<span style="background:#f6f8fb;border:1px solid #e1e8f2;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#1A1F2B">📅 Календарь</span>
+<span style="background:#f6f8fb;border:1px solid #e1e8f2;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#1A1F2B">📧 Почта</span>
+<span style="background:#f6f8fb;border:1px solid #e1e8f2;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#1A1F2B">📚 База знаний</span>
+<span style="background:#f6f8fb;border:1px solid #e1e8f2;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#1A1F2B">🔗 API</span>
+</div>
+<div style="text-align:center">
+<img alt="МИТ" height="120" src="logo.svg" style="width:120px;height:120px;border-radius:50%;margin:0 auto 10px;display:block;box-shadow:0 0 0 8px #2aabee14" width="120"/>
+<div style="font-size:13px;color:#5E6B7F;font-weight:500">→ Структурированные результаты</div>
+</div>
+</div>
+</section>
+<!-- ===== SKILLS (3 cards) ===== -->
+<section style="padding:0 16px 40px">
+<div style="text-align:center;margin-bottom:24px">
+<h2 style="font-size:24px;font-weight:700;margin:0 0 8px;color:#1A1F2B">Как рутина превращается в навык</h2>
+<p style="font-size:14px;color:#5E6B7F;line-height:1.5;margin:0">МИТ изучает ваши процессы и автоматизирует повторяющиеся действия.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:48px;height:48px;background:#2aabee14;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#2aabee;flex-shrink:0">1</div>
+<div>
+<div style="font-weight:700;font-size:15px;color:#1A1F2B;margin-bottom:2px">Повторяющаяся работа</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.4">Вы выполняете рутинные задачи — МИТ наблюдает и запоминает процесс.</div>
+</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:48px;height:48px;background:#7a3cff14;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#7a3cff;flex-shrink:0">2</div>
+<div>
+<div style="font-weight:700;font-size:15px;color:#1A1F2B;margin-bottom:2px">Сборка навыка</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.4">Ассистент изучает процесс и готовит автоматизацию под ваши правила.</div>
+</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:48px;height:48px;background:#22c55e14;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#22c55e;flex-shrink:0">3</div>
+<div>
+<div style="font-weight:700;font-size:15px;color:#1A1F2B;margin-bottom:2px">Навык готов</div>
+<div style="font-size:13px;color:#5E6B7F;line-height:1.4">Рутина работает автоматически — вы только проверяете результат.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== SECURITY (4 cards) ===== -->
+<section id="security-mobile" style="padding:0 16px 40px">
+<div style="text-align:center;margin-bottom:24px">
+<h2 style="font-size:24px;font-weight:700;margin:0 0 8px;color:#1A1F2B">Ваши данные под защитой</h2>
+<p style="font-size:14px;color:#5E6B7F;line-height:1.5;margin:0">Изолированная инфраструктура и полный контроль доступа.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px 14px;text-align:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:40px;height:40px;background:#0d6b6b14;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px">
+<svg height="20" viewbox="0 0 24 24" width="20"><rect fill="none" height="11" rx="2" stroke="#0d6b6b" stroke-width="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0110 0v4" fill="none" stroke="#0d6b6b" stroke-linecap="round" stroke-width="2"></path></svg>
+</div>
+<div style="font-weight:700;font-size:14px;color:#1A1F2B;margin-bottom:4px">Изолированный сервер</div>
+<div style="font-size:12px;color:#5E6B7F;line-height:1.4">Ваш экземпляр работает на отдельном сервере.</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px 14px;text-align:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:40px;height:40px;background:#2aabee14;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px">
+<svg height="20" viewbox="0 0 24 24" width="20"><circle cx="12" cy="8" fill="none" r="4" stroke="#2aabee" stroke-width="2"></circle><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="none" stroke="#2aabee" stroke-linecap="round" stroke-width="2"></path></svg>
+</div>
+<div style="font-weight:700;font-size:14px;color:#1A1F2B;margin-bottom:4px">Доступ владельца</div>
+<div style="font-size:12px;color:#5E6B7F;line-height:1.4">Только вы управляете ассистентом и данными.</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px 14px;text-align:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:40px;height:40px;background:#7a3cff14;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px">
+<svg height="20" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" fill="none" r="9" stroke="#7a3cff" stroke-width="2"></circle><polyline fill="none" points="8,12 11,15 16,9" stroke="#7a3cff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline></svg>
+</div>
+<div style="font-weight:700;font-size:14px;color:#1A1F2B;margin-bottom:4px">Контроль действий</div>
+<div style="font-size:12px;color:#5E6B7F;line-height:1.4">Вы подтверждаете важные операции ассистента.</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:18px;padding:18px 14px;text-align:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:40px;height:40px;background:#22c55e14;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px">
+<svg height="20" viewbox="0 0 24 24" width="20"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" fill="none" stroke="#22c55e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><polyline fill="none" points="7,10 12,15 17,10" stroke="#22c55e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline><line stroke="#22c55e" stroke-linecap="round" stroke-width="2" x1="12" x2="12" y1="15" y2="3"></line></svg>
+</div>
+<div style="font-weight:700;font-size:14px;color:#1A1F2B;margin-bottom:4px">Резервное копирование</div>
+<div style="font-size:12px;color:#5E6B7F;line-height:1.4">Регулярные бэкапы всех ваших данных.</div>
+</div>
+</div>
+</section>
+<!-- ===== LAUNCH PROCESS (4 steps) ===== -->
+<section id="how-mobile" style="padding:0 16px 40px">
+<div style="text-align:center;margin-bottom:24px">
+<h2 style="font-size:24px;font-weight:700;margin:0 0 8px;color:#1A1F2B">4 шага до вашего ассистента</h2>
+<p style="font-size:14px;color:#5E6B7F;line-height:1.5;margin:0">От заявки до работающего AI-агента в Telegram.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:16px;padding:16px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:40px;height:40px;background:#2aabee;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;flex-shrink:0">1</div>
+<div>
+<div style="font-weight:700;font-size:15px;color:#1A1F2B;margin-bottom:2px">Заявка</div>
+<div style="font-size:13px;color:#5E6B7F">Опишите свои задачи и рабочий контекст.</div>
+</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:16px;padding:16px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:40px;height:40px;background:#7a3cff;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;flex-shrink:0">2</div>
+<div>
+<div style="font-weight:700;font-size:15px;color:#1A1F2B;margin-bottom:2px">Создание</div>
+<div style="font-size:13px;color:#5E6B7F">Настройка ассистента под ваши процессы и правила.</div>
+</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:16px;padding:16px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:40px;height:40px;background:#0d6b6b;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;flex-shrink:0">3</div>
+<div>
+<div style="font-weight:700;font-size:15px;color:#1A1F2B;margin-bottom:2px">Получение</div>
+<div style="font-size:13px;color:#5E6B7F">Готовый ассистент появляется в вашем Telegram.</div>
+</div>
+</div>
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:16px;padding:16px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px rgba(26,31,43,0.04)">
+<div style="width:40px;height:40px;background:#22c55e;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;flex-shrink:0">4</div>
+<div>
+<div style="font-weight:700;font-size:15px;color:#1A1F2B;margin-bottom:2px">Развитие</div>
+<div style="font-size:13px;color:#5E6B7F">Новые навыки и сценарии по мере работы.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== PRICING ===== -->
+<section id="pricing-mobile" style="padding:0 16px 40px">
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:24px;padding:28px 20px;text-align:center;max-width:380px;margin:0 auto;box-shadow:0 16px 48px rgba(26,31,43,0.08)">
+<div style="font-size:13px;color:#5E6B7F;font-weight:500;margin-bottom:4px">Тариф</div>
+<div style="font-size:40px;font-weight:800;color:#0d6b6b;line-height:1">10 000 ₽</div>
+<div style="font-size:14px;color:#5E6B7F;margin-bottom:20px">в месяц</div>
+<div style="text-align:left;margin-bottom:24px;display:flex;flex-direction:column;gap:8px">
+<div style="font-size:13px;color:#1A1F2B;display:flex;align-items:center;gap:8px"><span style="color:#22c55e;font-weight:700">✓</span> Персональный ассистент</div>
+<div style="font-size:13px;color:#1A1F2B;display:flex;align-items:center;gap:8px"><span style="color:#22c55e;font-weight:700">✓</span> Изолированный сервер</div>
+<div style="font-size:13px;color:#1A1F2B;display:flex;align-items:center;gap:8px"><span style="color:#22c55e;font-weight:700">✓</span> Обучение навыкам</div>
+<div style="font-size:13px;color:#1A1F2B;display:flex;align-items:center;gap:8px"><span style="color:#22c55e;font-weight:700">✓</span> Интеграции с источниками</div>
+<div style="font-size:13px;color:#1A1F2B;display:flex;align-items:center;gap:8px"><span style="color:#22c55e;font-weight:700">✓</span> Техническая поддержка</div>
+<div style="font-size:13px;color:#1A1F2B;display:flex;align-items:center;gap:8px"><span style="color:#22c55e;font-weight:700">✓</span> 14 дней бесплатно</div>
+</div>
+<a href="#lead-form-mobile" style="background:#2aabee;color:#fff;padding:14px 28px;border-radius:14px;text-decoration:none;font-weight:700;font-size:15px;display:block;box-shadow:0 8px 24px #2aabee2e">Оставить заявку</a>
+</div>
+</section>
+<!-- ===== FAQ (8 questions) ===== -->
+<section style="padding:0 16px 40px">
+<div style="text-align:center;margin-bottom:24px">
+<h2 style="font-size:24px;font-weight:700;margin:0 0 8px;color:#1A1F2B">Частые вопросы</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03)">
+<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Что такое МИТ ассистент?<span style="font-size:18px;color:#8EA1B2">+</span></summary>
+<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5">AI-агент в Telegram, который помогает управлять задачами, календарём, документами и знаниями. Работает 24/7 на вашем изолированном сервере.</p>
+</details>
+<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03)">
+<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Как происходит обучение навыкам?<span style="font-size:18px;color:#8EA1B2">+</span></summary>
+<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5">Вы показываете процесс один раз — ассистент изучает шаги и автоматизирует повторяющиеся действия. Навык собирается под ваши правила.</p>
+</details>
+<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03)">
+<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Где хранятся мои данные?<span style="font-size:18px;color:#8EA1B2">+</span></summary>
+<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5">На вашем изолированном сервере. Доступ к данным есть только у вас. Никакие данные не передаются третьим лицам.</p>
+</details>
+<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03)">
+<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Можно ли отменить подписку?<span style="font-size:18px;color:#8EA1B2">+</span></summary>
+<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5">Да, в любой момент. Все ваши данные остаются у вас, вы можете их выгрузить в любой момент.</p>
+</details>
+<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03)">
+<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Какие интеграции поддерживаются?<span style="font-size:18px;color:#8EA1B2">+</span></summary>
+<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5">Telegram (сообщения, файлы), календарь, почта, базы знаний, API. Список расширяется под ваши задачи.</p>
+</details>
+<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03)">
+<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Сколько времени занимает запуск?<span style="font-size:18px;color:#8EA1B2">+</span></summary>
+<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5">От 1 до 3 дней после заявки. Мы настраиваем сервер, базовые навыки и интеграции под ваш контекст.</p>
+</details>
+<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03)">
+<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Нужны ли технические знания?<span style="font-size:18px;color:#8EA1B2">+</span></summary>
+<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5">Нет. Всё работает в Telegram — вы общаетесь с ассистентом как с коллегой. Никакого кода или настроек.</p>
+</details>
+<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03)">
+<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Что входит в 14 дней бесплатно?<span style="font-size:18px;color:#8EA1B2">+</span></summary>
+<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5">Полный доступ ко всем функциям: ассистент, навыки, интеграции, поддержка. Без ограничений и скрытых платежей.</p>
+</details>
+</div>
+</section>
+<!-- ===== APPLICATION FORM ===== -->
+<section id="lead-form-mobile" style="padding:0 16px 60px">
+<div style="background:#fff;border:1px solid #e1e8f2;border-radius:24px;padding:28px 20px;max-width:420px;margin:0 auto;box-shadow:0 16px 48px rgba(26,31,43,0.08)">
+<h2 style="font-size:22px;font-weight:700;text-align:center;margin:0 0 6px;color:#1A1F2B">Оставить заявку</h2>
+<p style="font-size:13px;color:#5E6B7F;text-align:center;margin:0 0 20px">Мы свяжемся с вами в Telegram</p>
+<form id="mobile-form" style="display:flex;flex-direction:column;gap:10px">
+<input name="lastName" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Фамилия" required="" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;outline:none;transition:border-color .2s" type="text"/>
+<input name="firstName" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Имя" required="" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;outline:none;transition:border-color .2s" type="text"/>
+<input name="telegram" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Telegram @username" required="" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;outline:none;transition:border-color .2s" type="text"/>
+<textarea name="task" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Опишите задачу" required="" rows="3" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;resize:vertical;outline:none;transition:border-color .2s"></textarea>
+<button style="background:#2aabee;color:#fff;border:none;padding:14px;border-radius:14px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;box-shadow:0 8px 24px #2aabee2e;transition:opacity .2s" type="submit">Отправить заявку</button>
+<div id="form-status-mobile" style="font-size:13px;text-align:center;min-height:18px;margin-top:4px"></div>
+</form>
+</div>
+</section>
+<!-- ===== FOOTER ===== -->
+<footer style="padding:24px 16px;text-align:center;border-top:1px solid #e1e8f2;font-size:13px;color:#8EA1B2;background:#fff">
+<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px">
+<div style="width:28px;height:28px;background:linear-gradient(135deg,#0d6b6b,#2aabee);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:12px">M</div>
+<span style="font-weight:700;color:#1A1F2B;font-size:15px">МИТ ассистент</span>
+</div>
+<div style="margin-bottom:4px">AI-агент в Telegram для порядка в работе</div>
+<div>© 2026 МИТ Ассистент</div>
+</footer>
+</div><div id="main"><div class="mit-desktop mit-YQ5uF mit-UBZn3 mit-qKTeE mit-NhgEa mit-72rtr7" style="min-height:100vh;width:auto"><nav class="" data-section="Navigation"><div class="" data-section="Brand"><div class="" data-section="Logo Mark"><div-image-wrapper="true" style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0"><img alt="" decoding="async" height="1200" sizes="34px" src="logo.svg" srcset="logo.svg" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover" width="1200"/></div></div><div class="mit-1pl5c8h" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNzAw;width:180px;overflow:var(--overflow-clip-fallback,clip);will-change:none;border-radius:34px;flex:none;position:relative"><div-image-wrapper="true" style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0"><img alt="" decoding="async" height="1200" src="logo.svg" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover" width="1200"/></div></div><div class="mit-1fe218z" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtcmVndWxhcg==;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0"><img alt="" decoding="async" height="1200" src="logo.svg" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover" width="1200"/></div></div><div class="mit-1hmilrr" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtODAw;grid-template-columns:repeat(2,1fr);gap:18px;width:100%;max-width:800px;margin:0 auto;position:relative">
+      <div class="mit-faq-item" style="position:relative;background:#fff;border:1px solid #e7eaf0;border-radius:16px;cursor:pointer;transition:box-shadow .2s ease;overflow:visible;z-index:1">
+        <div class="mit-faq-row" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px">
+          <p style="margin:0;font-family:'Geist',sans-serif;font-size:17px;font-weight:800;color:#1A1F2B;line-height:1.35em">Сколько занимает настройка?</p>
+          <span class="mit-faq-plus" style="flex-shrink:0;font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#2AABEE;line-height:1;transition:transform .3s ease">+</span>
+        </div>
+        <div class="mit-faq-answer" style="position:absolute;left:0;right:0;top:100%;max-height:0;overflow:hidden;opacity:0;padding:0 26px;background:#fff;border:1px solid #e7eaf0;border-top:none;border-radius:0 0 16px 16px;z-index:20;transform:none;transition:max-height .35s ease,opacity .35s ease,padding .35s ease;box-shadow:0 12px 24px rgba(26,31,43,.08)">
+          <p style="margin:0;padding:12px 0 22px;font-family:'Geist',sans-serif;font-size:14px;font-weight:500;line-height:1.55em;color:#5E6B7F">От 1 до 3 дней после заявки. Мы настраиваем сервер, базовые навыки и интеграции под ваш контекст.</p>
+        </div>
+      </div>
+      <div class="mit-faq-item" style="position:relative;background:#fff;border:1px solid #e7eaf0;border-radius:16px;cursor:pointer;transition:box-shadow .2s ease;overflow:visible;z-index:1">
+        <div class="mit-faq-row" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px">
+          <p style="margin:0;font-family:'Geist',sans-serif;font-size:17px;font-weight:800;color:#1A1F2B;line-height:1.35em">Можно ли развивать ассистента?</p>
+          <span class="mit-faq-plus" style="flex-shrink:0;font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#2AABEE;line-height:1;transition:transform .3s ease">+</span>
+        </div>
+        <div class="mit-faq-answer" style="position:absolute;left:0;right:0;top:100%;max-height:0;overflow:hidden;opacity:0;padding:0 26px;background:#fff;border:1px solid #e7eaf0;border-top:none;border-radius:0 0 16px 16px;z-index:20;transform:none;transition:max-height .35s ease,opacity .35s ease,padding .35s ease;box-shadow:0 12px 24px rgba(26,31,43,.08)">
+          <p style="margin:0;padding:12px 0 22px;font-family:'Geist',sans-serif;font-size:14px;font-weight:500;line-height:1.55em;color:#5E6B7F">Да. МИТ умеет учиться на ваших задачах — вы показываете процесс один раз, ассистент запоминает шаги и повторяет их сам.</p>
+        </div>
+      </div>
+      <div class="mit-faq-item" style="position:relative;background:#fff;border:1px solid #e7eaf0;border-radius:16px;cursor:pointer;transition:box-shadow .2s ease;overflow:visible;z-index:1">
+        <div class="mit-faq-row" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px">
+          <p style="margin:0;font-family:'Geist',sans-serif;font-size:17px;font-weight:800;color:#1A1F2B;line-height:1.35em">Безопасны ли мои данные?</p>
+          <span class="mit-faq-plus" style="flex-shrink:0;font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#2AABEE;line-height:1;transition:transform .3s ease">+</span>
+        </div>
+        <div class="mit-faq-answer" style="position:absolute;left:0;right:0;top:100%;max-height:0;overflow:hidden;opacity:0;padding:0 26px;background:#fff;border:1px solid #e7eaf0;border-top:none;border-radius:0 0 16px 16px;z-index:20;transform:none;transition:max-height .35s ease,opacity .35s ease,padding .35s ease;box-shadow:0 12px 24px rgba(26,31,43,.08)">
+          <p style="margin:0;padding:12px 0 22px;font-family:'Geist',sans-serif;font-size:14px;font-weight:500;line-height:1.55em;color:#5E6B7F">Да. Все данные хранятся на вашем изолированном сервере. Доступ есть только у вас, ничего не передаётся третьим лицам.</p>
+        </div>
+      </div>
+      <div class="mit-faq-item" style="position:relative;background:#fff;border:1px solid #e7eaf0;border-radius:16px;cursor:pointer;transition:box-shadow .2s ease;overflow:visible;z-index:1">
+        <div class="mit-faq-row" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px">
+          <p style="margin:0;font-family:'Geist',sans-serif;font-size:17px;font-weight:800;color:#1A1F2B;line-height:1.35em">Какие навыки уже есть внутри?</p>
+          <span class="mit-faq-plus" style="flex-shrink:0;font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#2AABEE;line-height:1;transition:transform .3s ease">+</span>
+        </div>
+        <div class="mit-faq-answer" style="position:absolute;left:0;right:0;top:100%;max-height:0;overflow:hidden;opacity:0;padding:0 26px;background:#fff;border:1px solid #e7eaf0;border-top:none;border-radius:0 0 16px 16px;z-index:20;transform:none;transition:max-height .35s ease,opacity .35s ease,padding .35s ease;box-shadow:0 12px 24px rgba(26,31,43,.08)">
+          <p style="margin:0;padding:12px 0 22px;font-family:'Geist',sans-serif;font-size:14px;font-weight:500;line-height:1.55em;color:#5E6B7F">Базовые навыки: задачи, календарь, документы, отчёты, напоминания. Любой другой навык мы собираем под ваш процесс.</p>
+        </div>
+      </div>
+      <div class="mit-faq-item" style="position:relative;background:#fff;border:1px solid #e7eaf0;border-radius:16px;cursor:pointer;transition:box-shadow .2s ease;overflow:visible;z-index:1">
+        <div class="mit-faq-row" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px">
+          <p style="margin:0;font-family:'Geist',sans-serif;font-size:17px;font-weight:800;color:#1A1F2B;line-height:1.35em">Что такое свой навык?</p>
+          <span class="mit-faq-plus" style="flex-shrink:0;font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#2AABEE;line-height:1;transition:transform .3s ease">+</span>
+        </div>
+        <div class="mit-faq-answer" style="position:absolute;left:0;right:0;top:100%;max-height:0;overflow:hidden;opacity:0;padding:0 26px;background:#fff;border:1px solid #e7eaf0;border-top:none;border-radius:0 0 16px 16px;z-index:20;transform:none;transition:max-height .35s ease,opacity .35s ease,padding .35s ease;box-shadow:0 12px 24px rgba(26,31,43,.08)">
+          <p style="margin:0;padding:12px 0 22px;font-family:'Geist',sans-serif;font-size:14px;font-weight:500;line-height:1.55em;color:#5E6B7F">Это автоматизация вашей повторяющейся работы. Вы объясняете ассистенту алгоритм один раз — он выполняет её сам по команде.</p>
+        </div>
+      </div>
+      <div class="mit-faq-item" style="position:relative;background:#fff;border:1px solid #e7eaf0;border-radius:16px;cursor:pointer;transition:box-shadow .2s ease;overflow:visible;z-index:1">
+        <div class="mit-faq-row" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px">
+          <p style="margin:0;font-family:'Geist',sans-serif;font-size:17px;font-weight:800;color:#1A1F2B;line-height:1.35em">Что входит в стоимость?</p>
+          <span class="mit-faq-plus" style="flex-shrink:0;font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#2AABEE;line-height:1;transition:transform .3s ease">+</span>
+        </div>
+        <div class="mit-faq-answer" style="position:absolute;left:0;right:0;top:100%;max-height:0;overflow:hidden;opacity:0;padding:0 26px;background:#fff;border:1px solid #e7eaf0;border-top:none;border-radius:0 0 16px 16px;z-index:20;transform:none;transition:max-height .35s ease,opacity .35s ease,padding .35s ease;box-shadow:0 12px 24px rgba(26,31,43,.08)">
+          <p style="margin:0;padding:12px 0 22px;font-family:'Geist',sans-serif;font-size:14px;font-weight:500;line-height:1.55em;color:#5E6B7F">Сервер, настройка ассистента, базовые навыки, интеграции и поддержка. В 14-дневном пробном периоде — полный функционал без ограничений.</p>
+        </div>
+      </div>
+      <div class="mit-faq-item" style="position:relative;background:#fff;border:1px solid #e7eaf0;border-radius:16px;cursor:pointer;transition:box-shadow .2s ease;overflow:visible;z-index:1">
+        <div class="mit-faq-row" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px">
+          <p style="margin:0;font-family:'Geist',sans-serif;font-size:17px;font-weight:800;color:#1A1F2B;line-height:1.35em">Чем МИТ отличается от ChatGPT?</p>
+          <span class="mit-faq-plus" style="flex-shrink:0;font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#2AABEE;line-height:1;transition:transform .3s ease">+</span>
+        </div>
+        <div class="mit-faq-answer" style="position:absolute;left:0;right:0;top:100%;max-height:0;overflow:hidden;opacity:0;padding:0 26px;background:#fff;border:1px solid #e7eaf0;border-top:none;border-radius:0 0 16px 16px;z-index:20;transform:none;transition:max-height .35s ease,opacity .35s ease,padding .35s ease;box-shadow:0 12px 24px rgba(26,31,43,.08)">
+          <p style="margin:0;padding:12px 0 22px;font-family:'Geist',sans-serif;font-size:14px;font-weight:500;line-height:1.55em;color:#5E6B7F">МИТ работает в Telegram, запоминает ваш контекст, имеет доступ к вашим документам и календарю, действует от вашего имени.</p>
+        </div>
+      </div>
+      <div class="mit-faq-item" style="position:relative;background:#fff;border:1px solid #e7eaf0;border-radius:16px;cursor:pointer;transition:box-shadow .2s ease;overflow:visible;z-index:1">
+        <div class="mit-faq-row" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px">
+          <p style="margin:0;font-family:'Geist',sans-serif;font-size:17px;font-weight:800;color:#1A1F2B;line-height:1.35em">Можно ли интегрировать свои сервисы?</p>
+          <span class="mit-faq-plus" style="flex-shrink:0;font-family:'Geist',sans-serif;font-size:22px;font-weight:700;color:#2AABEE;line-height:1;transition:transform .3s ease">+</span>
+        </div>
+        <div class="mit-faq-answer" style="position:absolute;left:0;right:0;top:100%;max-height:0;overflow:hidden;opacity:0;padding:0 26px;background:#fff;border:1px solid #e7eaf0;border-top:none;border-radius:0 0 16px 16px;z-index:20;transform:none;transition:max-height .35s ease,opacity .35s ease,padding .35s ease;box-shadow:0 12px 24px rgba(26,31,43,.08)">
+          <p style="margin:0;padding:12px 0 22px;font-family:'Geist',sans-serif;font-size:14px;font-weight:500;line-height:1.55em;color:#5E6B7F">Да. Telegram, почта, календарь, базы знания, API и внутренние системы — подключаем под ваши задачи.</p>
+        </div>
+      </div>
+</div></div><div class="" data-section="Lead Form Card" id="lead-form"><div class="mit-ve1gsr" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtODAw;width:100%;border-bottom-left-radius:16px;border-bottom-right-radius:16px;border-top-left-radius:16px;border-top-right-radius:16px" type="submit"><div class="mit-3znzqm" style="--extracted-r6o4lv:#FFFFFF;transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtODAw;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="company" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="message" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="subject" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="title" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="description" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="feedback" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="notes" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="details" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="remarks" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="comments" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/></form></div></section><footer class="" data-section="Footer"><div class="" data-section="Footer Brand"><div class="mit-1e47m9a" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtODAw; overflow: hidden; bottom: 0; left: 0; width: 0; height: 0; z-index: 0; contain: strict">
+<svg display="block" id="1952988144" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 4.34 4.34 L 0 0" fill="transparent" height="4.34px" id="z8RZjJ9Kn" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(16.66 16.66)" width="4.34px"></path><path d="M 0 8 C 0 3.582 3.582 0 8 0 C 12.418 0 16 3.582 16 8 C 16 12.418 12.418 16 8 16 C 3.582 16 0 12.418 0 8 Z" fill="transparent" height="16px" id="FZH9LEsdu" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 3)" width="16px"></path></svg>
+<svg display="block" id="3583153760" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 0 L 0 4" fill="transparent" height="4px" id="recurAYUl" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(8 2)" width="1px"></path><path d="M 0 0 L 0 4" fill="transparent" height="4px" id="JNtAKTbuu" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(16 2)" width="1px"></path><path d="M 2 18 C 0.895 18 0 17.105 0 16 L 0 2 C 0 0.895 0.895 0 2 0 L 16 0 C 17.105 0 18 0.895 18 2 L 18 16 C 18 17.105 17.105 18 16 18 Z" fill="transparent" height="18px" id="AC0vhtl4w" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 4)" width="18px"></path><path d="M 0 0 L 18 0" fill="transparent" height="1px" id="mIPZIhfuf" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 10)" width="18px"></path><path d="M 0 2 L 2 4 L 6 0" fill="transparent" height="4px" id="y2Tf1eRIm" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(9 14)" width="6px"></path></svg>
+<svg display="block" id="2901992599" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 18 17 C 19.105 17 20 16.105 20 15 L 20 5 C 20 3.895 19.105 3 18 3 L 10.1 3 C 9.42 3.007 8.784 2.668 8.41 2.1 L 7.6 0.9 C 7.23 0.338 6.603 0 5.93 0 L 2 0 C 0.895 0 0 0.895 0 2 L 0 15 C 0 16.105 0.895 17 2 17 Z" fill="transparent" height="17px" id="GxOhkx_Dv" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 3)" width="20px"></path></svg>
+<svg display="block" id="1830034155" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 0 C 0.357 0.619 1.018 1 1.732 1 C 2.446 1 3.107 0.619 3.464 0" fill="transparent" height="1px" id="E5R1izcf8" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(10.268 21)" width="3.4640000000000004px"></path><path d="M 0.261 13.326 C -0.006 13.619 -0.075 14.041 0.085 14.403 C 0.245 14.766 0.603 15 0.999 15 L 16.999 15 C 17.395 15 17.754 14.767 17.914 14.405 C 18.074 14.042 18.006 13.62 17.739 13.327 C 16.409 11.956 14.999 10.499 14.999 6 C 14.999 2.686 12.313 0 8.999 0 C 5.686 0 2.999 2.686 2.999 6 C 2.999 10.499 1.588 11.956 0.261 13.326" fill="transparent" height="15px" id="sRui1JInL" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3.001 2)" width="17.99966583413629px"></path></svg>
+<svg display="block" id="4162409723" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 20 0 L 11.009 5.727 C 10.388 6.088 9.621 6.088 9 5.727 L 0 0" fill="transparent" height="5.997555074597631px" id="YxJGPvMN5" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 7)" width="20px"></path><path d="M 2 16 C 0.895 16 0 15.105 0 14 L 0 2 C 0 0.895 0.895 0 2 0 L 18 0 C 19.105 0 20 0.895 20 2 L 20 14 C 20 15.105 19.105 16 18 16 Z" fill="transparent" height="16px" id="LPBzBUi6X" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 4)" width="20px"></path></svg>
+<svg display="block" id="2022293355" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 3 C 0 1.343 4.029 0 9 0 C 13.971 0 18 1.343 18 3 C 18 4.657 13.971 6 9 6 C 4.029 6 0 4.657 0 3 Z" fill="transparent" height="6px" id="KEwmTj16V" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 2)" width="18px"></path><path d="M 0 0 L 0 14 C 0 15.657 4.029 17 9 17 C 13.971 17 18 15.657 18 14 L 18 0" fill="transparent" height="17px" id="ULyyVXmhG" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 5)" width="18px"></path><path d="M 0 0 C 0 1.657 4.029 3 9 3 C 13.971 3 18 1.657 18 0" fill="transparent" height="3px" id="UP9RtY23R" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 12)" width="18px"></path></svg>
+<svg display="block" id="1114939546" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 1.861 6.615 C 1.564 5.279 1.972 3.884 2.94 2.917 C 3.909 1.95 5.305 1.546 6.641 1.845 C 7.376 0.696 8.646 0 10.011 0 C 11.375 0 12.646 0.696 13.381 1.845 C 14.719 1.544 16.117 1.95 17.087 2.919 C 18.056 3.889 18.462 5.287 18.161 6.625 C 19.311 7.36 20.006 8.631 20.006 9.995 C 20.006 11.36 19.311 12.63 18.161 13.365 C 18.46 14.701 18.056 16.097 17.089 17.066 C 16.122 18.035 14.727 18.442 13.391 18.145 C 12.657 19.299 11.384 19.998 10.016 19.998 C 8.648 19.998 7.375 19.299 6.641 18.145 C 5.305 18.445 3.909 18.04 2.94 17.073 C 1.972 16.107 1.564 14.711 1.861 13.375 C 0.702 12.642 0 11.366 0 9.995 C 0 8.624 0.702 7.348 1.861 6.615 Z" fill="transparent" height="19.998269123192628px" id="oDkA6oZKW" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(1.989 2.005)" width="20.00614941146023px"></path><path d="M 0 2 L 2 4 L 6 0" fill="transparent" height="4px" id="kwS7vUsbf" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(9 10)" width="6px"></path></svg>
+<svg display="block" id="586216969" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 20 L 14 20 C 15.105 20 16 19.105 16 18 L 16 5 L 11 0 L 2 0 C 0.895 0 0 0.895 0 2 L 0 6" fill="transparent" height="20px" id="hw8QgRZzQ" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(4 2)" width="16px"></path><path d="M 0 0 L 0 4 C 0 5.105 0.895 6 2 6 L 6 6" fill="transparent" height="6px" id="CU0PR9cSq" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(14 2)" width="6px"></path><path d="M 0 2 L 2 4 L 6 0" fill="transparent" height="4px" id="te8Wsooql" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 13)" width="6px"></path></svg>
+<svg display="block" id="3651586927" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 2 8 C 0.895 8 0 7.105 0 6 L 0 2 C 0 0.895 0.895 0 2 0 L 6 0 C 7.105 0 8 0.895 8 2 L 8 6 C 8 7.105 7.105 8 6 8 Z" fill="transparent" height="8px" id="q8t3ykum_" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 3)" width="8px"></path><path d="M 0 0 L 0 4 C 0 5.105 0.895 6 2 6 L 6 6" fill="transparent" height="6px" id="sbJ_c6Fa1" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(7 11)" width="6px"></path><path d="M 2 8 C 0.895 8 0 7.105 0 6 L 0 2 C 0 0.895 0.895 0 2 0 L 6 0 C 7.105 0 8 0.895 8 2 L 8 6 C 8 7.105 7.105 8 6 8 Z" fill="transparent" height="8px" id="c7r1oNJY1" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(13 13)" width="8px"></path></svg>
+<svg display="block" id="3450090694" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 0 C 0.357 0.619 1.018 1 1.732 1 C 2.446 1 3.107 0.619 3.464 0" fill="transparent" height="1px" id="sCVPA3xuK" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(10.268 21)" width="3.4640000000000004px"></path><path d="M 10.916 0.314 C 9.085 -0.303 7.069 0 5.5 1.127 C 3.931 2.254 3 4.068 3 6 C 3 10.499 1.589 11.956 0.26 13.327 C -0.006 13.62 -0.075 14.043 0.085 14.405 C 0.246 14.767 0.604 15 1 15 L 17 15 C 17.396 15 17.755 14.767 17.915 14.405 C 18.075 14.043 18.007 13.62 17.74 13.327 C 17.535 13.115 17.339 12.893 17.155 12.662" fill="transparent" height="15.000188469460129px" id="EImZNIYyh" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 2)" width="18.000754244124302px"></path><path d="M 0 3 C 0 1.343 1.343 0 3 0 C 4.657 0 6 1.343 6 3 C 6 4.657 4.657 6 3 6 C 1.343 6 0 4.657 0 3 Z" fill="transparent" height="6px" id="LF9d59gDV" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(15 5)" width="6px"></path></svg>
+<svg display="block" id="3971815880" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 11 0 L 2 0 C 0.895 0 0 0.895 0 2 L 0 18 C 0 19.105 0.895 20 2 20 L 14 20 C 15.105 20 16 19.105 16 18 L 16 5 Z" fill="transparent" height="20px" id="bqRx3ohLC" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(4 2)" width="16px"></path><path d="M 0 0 L 0 4 C 0 5.105 0.895 6 2 6 L 6 6" fill="transparent" height="6px" id="deDsxSd5n" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(14 2)" width="6px"></path><path d="M 2 0 L 0 0" fill="transparent" height="1px" id="hnFYZQLSl" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(8 9)" width="2px"></path><path d="M 8 0 L 0 0" fill="transparent" height="1px" id="Ij7gMaKHY" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(8 13)" width="8px"></path><path d="M 8 0 L 0 0" fill="transparent" height="1px" id="ebzPbGZA_" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(8 17)" width="8px"></path></svg>
+<svg display="block" id="1234075885" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 6 0 L 2 0 C 0.895 0 0 0.895 0 2 L 0 6 M 6 0 L 16 0 C 17.105 0 18 0.895 18 2 L 18 6 M 6 0 L 6 18 M 6 18 L 16 18 C 17.105 18 18 17.105 18 16 L 18 6 M 6 18 L 2 18 C 0.895 18 0 17.105 0 16 L 0 6 M 0 6 L 18 6" fill="transparent" height="18px" id="esX30Tele" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 3)" width="18px"></path></svg>
+<svg display="block" id="1440315036" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 0 L 8 0" fill="transparent" height="1px" id="APEG6Q7nj" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(13 5)" width="8px"></path><path d="M 0 0 L 8 0" fill="transparent" height="1px" id="j9eT0h2mX" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(13 12)" width="8px"></path><path d="M 0 0 L 8 0" fill="transparent" height="1px" id="bcqZCEbUb" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(13 19)" width="8px"></path><path d="M 0 2 L 2 4 L 6 0" fill="transparent" height="4px" id="dDaJT3aRB" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 15)" width="6px"></path><path d="M 0 2 L 2 4 L 6 0" fill="transparent" height="4px" id="de7RC4gOr" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 5)" width="6px"></path></svg>
+<svg display="block" id="3684946077" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 2 8 C 0.895 8 0 7.105 0 6 L 0 2 C 0 0.895 0.895 0 2 0 L 18 0 C 19.105 0 20 0.895 20 2 L 20 6 C 20 7.105 19.105 8 18 8 Z" fill="transparent" height="8px" id="rVtXm5s00" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 2)" width="20px"></path><path d="M 2 8 C 0.895 8 0 7.105 0 6 L 0 2 C 0 0.895 0.895 0 2 0 L 18 0 C 19.105 0 20 0.895 20 2 L 20 6 C 20 7.105 19.105 8 18 8 Z" fill="transparent" height="8px" id="Y2ZRp415a" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 14)" width="20px"></path><path d="M 0 0 L 0.01 0" fill="transparent" height="1px" id="md8G167ld" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(6 6)" width="1px"></path><path d="M 0 0 L 0.01 0" fill="transparent" height="1px" id="XwNfC2Epq" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(6 18)" width="1px"></path></svg>
+<svg display="block" id="1282200698" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 1 C 0 0.448 0.448 0 1 0 C 1.552 0 2 0.448 2 1 C 2 1.552 1.552 2 1 2 C 0.448 2 0 1.552 0 1 Z" fill="transparent" height="2px" id="VVsEMdkpU" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(11 15)" width="2px"></path><path d="M 2 12 C 0.895 12 0 11.105 0 10 L 0 2 C 0 0.895 0.895 0 2 0 L 16 0 C 17.105 0 18 0.895 18 2 L 18 10 C 18 11.105 17.105 12 16 12 Z" fill="transparent" height="12px" id="RWYjmkpvb" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 10)" width="18px"></path><path d="M 0 8 L 0 5 C 0 2.239 2.239 0 5 0 C 7.761 0 10 2.239 10 5 L 10 8" fill="transparent" height="8px" id="S0R3lYxJI" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(7 2)" width="10px"></path></svg>
+<svg display="block" id="2658957108" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 16 10.997 C 16 15.997 12.5 18.497 8.34 19.947 C 8.122 20.021 7.886 20.017 7.67 19.937 C 3.5 18.497 0 15.997 0 10.997 L 0 3.997 C 0 3.445 0.448 2.997 1 2.997 C 3 2.997 5.5 1.797 7.24 0.277 C 7.678 -0.097 8.322 -0.097 8.76 0.277 C 10.51 1.807 13 2.997 15 2.997 C 15.552 2.997 16 3.445 16 3.997 Z" fill="transparent" height="19.999887302925604px" id="yfF05g1jk" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(4 2.003)" width="16px"></path><path d="M 0 2 L 2 4 L 6 0" fill="transparent" height="4px" id="DIhqVgpJg" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(9 10)" width="6px"></path></svg>
+<svg display="block" id="4080759403" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 3 C 0 1.343 4.029 0 9 0 C 13.971 0 18 1.343 18 3 C 18 4.657 13.971 6 9 6 C 4.029 6 0 4.657 0 3 Z" fill="transparent" height="6px" id="aT_CwpYnW" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 2)" width="18px"></path><path d="M 0 0 C -0.003 1.141 1.935 2.183 5 2.69" fill="transparent" height="2.6899999999999995px" id="wCcPTFgpb" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 12)" width="5.000003347561431px"></path><path d="M 0 4.3 L 0 0" fill="transparent" height="4.300000000000001px" id="zi2M5DU8I" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(21 5)" width="1px"></path><path d="M 0 0 L 0 14 C -0.001 15.332 2.634 16.505 6.47 16.88" fill="transparent" height="16.88px" id="ICb9FSxv4" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 5)" width="6.470000479375751px"></path><path d="M 0 0 L 0 4 L 4 4" fill="transparent" height="4px" id="zuWOHgEug" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(12 12)" width="4px"></path><path d="M 1 7.5 C 2.291 9.222 4.539 9.924 6.581 9.243 C 8.623 8.563 10 6.652 10 4.5 C 10 2.015 7.985 0 5.5 0 C 4.17 0 2.96 0.54 2.09 1.41 L 0 3.5" fill="transparent" height="9.500322074366004px" id="AwD1zPfnd" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(12 12.5)" width="10px"></path></svg>
+<svg display="block" id="2033914333" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 12.536 19.689 C 12.614 19.882 12.804 20.008 13.013 20.002 C 13.222 19.997 13.405 19.862 13.473 19.665 L 19.973 0.665 C 20.038 0.484 19.993 0.281 19.857 0.145 C 19.721 0.009 19.519 -0.036 19.338 0.03 L 0.338 6.53 C 0.14 6.597 0.006 6.781 0 6.99 C -0.005 7.199 0.12 7.389 0.314 7.467 L 8.244 10.647 C 8.75 10.849 9.152 11.25 9.356 11.757 Z" fill="transparent" height="20.00231784589393px" id="fno9XmTwr" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 1.997)" width="20.002317845893934px"></path><path d="M 10.94 0 L 0 10.939" fill="transparent" height="10.939px" id="pwqQT3SoL" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(10.914 2.147)" width="10.94px"></path></svg>
+<svg display="block" id="3028356511" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 2 0 L 0 1.9" fill="transparent" height="1.9000000000000004px" id="O5Q5oOSBq" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(12 4.1)" width="2px"></path><path d="M 2.9 0.8 L 0 0" fill="transparent" height="1px" id="bLUrnu6Xa" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2.2 7.2)" width="2.9px"></path><path d="M 1.9 0 L 0 2" fill="transparent" height="2px" id="T6wJOe5uz" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(4.1 12)" width="1.9000000000000004px"></path><path d="M 0 0 L 0.8 2.9" fill="transparent" height="2.8999999999999995px" id="Vw0YQnHlx" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(7.2 2.2)" width="1px"></path><path d="M 0.04 0.693 C -0.04 0.506 0.002 0.289 0.146 0.146 C 0.289 0.002 0.506 -0.04 0.693 0.04 L 11.693 4.54 C 11.893 4.622 12.018 4.825 12.001 5.041 C 11.984 5.258 11.83 5.438 11.619 5.489 L 7.27 6.53 C 6.904 6.617 6.618 6.903 6.53 7.269 L 5.49 11.619 C 5.44 11.831 5.259 11.986 5.042 12.003 C 4.825 12.02 4.622 11.894 4.54 11.693 Z" fill="transparent" height="12.004397001187371px" id="O22816X_Q" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(8.997 8.997)" width="12.002845573328965px"></path></svg>
+<svg display="block" id="3408069395" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 1.003 12.003 C 0.617 12.004 0.265 11.783 0.098 11.434 C -0.069 11.086 -0.02 10.673 0.223 10.373 L 10.123 0.173 C 10.276 -0.004 10.531 -0.051 10.737 0.059 C 10.943 0.169 11.045 0.407 10.983 0.633 L 9.063 6.653 C 8.948 6.96 8.992 7.305 9.18 7.574 C 9.367 7.844 9.675 8.004 10.003 8.003 L 17.003 8.003 C 17.39 8.001 17.742 8.223 17.909 8.571 C 18.076 8.919 18.027 9.333 17.783 9.633 L 7.883 19.833 C 7.73 20.009 7.476 20.056 7.27 19.946 C 7.064 19.836 6.961 19.598 7.023 19.373 L 8.943 13.353 C 9.058 13.045 9.015 12.701 8.827 12.431 C 8.64 12.162 8.332 12.002 8.003 12.003 Z" fill="transparent" height="20.005255132286933px" id="e9aJn0Y5L" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2.997 1.997)" width="18.00683965016787px"></path></svg>
+<svg display="block" id="3843465606" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 16 0 L 5 11 L 0 6" fill="transparent" height="11px" id="j6zfhGLNP" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 6)" width="16px"></path><path d="M 9 0 L 1.5 7.5 L 0 6" fill="transparent" height="7.5px" id="C6IOCyRcK" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(13 10)" width="9px"></path></svg>
+<svg display="block" id="4166249800" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 0 L 0 6 L 4 6" fill="transparent" height="6px" id="ZSYTcmAb8" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(12 6)" width="4px"></path><path d="M 0 10 C 0 4.477 4.477 0 10 0 C 15.523 0 20 4.477 20 10 C 20 15.523 15.523 20 10 20 C 4.477 20 0 15.523 0 10 Z" fill="transparent" height="20px" id="iHDD2qGjG" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 2)" width="20px"></path></svg>
+<svg display="block" id="425173927" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 13 L 0 0" fill="transparent" height="13px" id="soePBiCqm" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(12 5)" width="1px"></path><path d="M 6 4 C 4.223 3.481 3.001 1.851 3 0 C 2.999 1.851 1.777 3.481 0 4" fill="transparent" height="4px" id="g3z_K009m" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(9 9)" width="6px"></path><path d="M 11.598 4.5 C 12.229 3.408 12.109 2.038 11.298 1.072 C 10.488 0.106 9.159 -0.25 7.974 0.181 C 6.789 0.612 6 1.739 6 3 C 6 1.739 5.211 0.612 4.026 0.181 C 2.841 -0.25 1.513 0.106 0.702 1.072 C -0.109 2.038 -0.229 3.408 0.402 4.5" fill="transparent" height="4.500283270099576px" id="dt3y9bF6n" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(6 2)" width="12.000049131583959px"></path><path d="M 0 0 C 1.191 0.306 2.175 1.143 2.668 2.27 C 3.161 3.396 3.109 4.687 2.526 5.77" fill="transparent" height="5.77px" id="dJ7UXLFXh" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(17.997 5.125)" width="3.0039082915657254px"></path><path d="M 0 7.464 C 1.81 7.464 3.395 6.248 3.864 4.499 C 4.332 2.751 3.568 0.905 2 0" fill="transparent" height="7.464px" id="udRnn_4uS" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(18 10.536)" width="4.000185577272699px"></path><path d="M 15.967 0 C 16.158 1.478 15.512 2.939 14.29 3.792 C 13.069 4.645 11.474 4.749 10.153 4.061 C 8.831 3.373 8.002 2.007 8 0.517 C 7.998 2.007 7.169 3.373 5.847 4.061 C 4.526 4.749 2.931 4.645 1.71 3.792 C 0.488 2.939 -0.158 1.478 0.033 0" fill="transparent" height="4.512742367620977px" id="iFPxDs4YB" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(4 17.483)" width="16.000157970756632px"></path><path d="M 4 7.464 C 2.19 7.464 0.605 6.248 0.137 4.499 C -0.332 2.751 0.432 0.905 2 0" fill="transparent" height="7.464px" id="Lubb1O1AI" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 10.536)" width="4.000185577272697px"></path><path d="M 3.004 0 C 1.813 0.306 0.829 1.143 0.336 2.27 C -0.157 3.396 -0.105 4.687 0.478 5.77" fill="transparent" height="5.77px" id="iddM66qAg" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2.999 5.125)" width="3.003908291565727px"></path></svg>
+<svg display="block" id="332324033" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 14 8 C 14 9.105 13.105 10 12 10 L 4.828 10 C 4.298 10 3.789 10.211 3.414 10.586 L 1.212 12.788 C 1.009 12.991 0.704 13.052 0.438 12.942 C 0.173 12.832 0 12.573 0 12.286 L 0 2 C 0 0.895 0.895 0 2 0 L 12 0 C 13.105 0 14 0.895 14 2 Z" fill="transparent" height="12.995929119583728px" id="SQiLgBMM_" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 2)" width="14px"></path><path d="M 12 0 C 13.105 0 14 0.895 14 2 L 14 12.286 C 14 12.573 13.827 12.832 13.562 12.942 C 13.296 13.052 12.991 12.991 12.788 12.788 L 10.586 10.586 C 10.211 10.211 9.702 10 9.172 10 L 2 10 C 0.895 10 0 9.105 0 8 L 0 7" fill="transparent" height="12.995929119583732px" id="s4tTBBM1k" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(8 9)" width="14px"></path></svg>
+<svg display="block" id="4191764975" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 8 16 L 8 1 C 8 0.448 7.552 0 7 0 L 2 0 C 0.895 0 0 0.895 0 2 L 0 14 C 0 15.105 0.895 16 2 16 L 14 16 C 15.105 16 16 15.105 16 14 L 16 9 C 16 8.448 15.552 8 15 8 L 0 8" fill="transparent" height="16px" id="oZFtnl0qQ" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(2 6)" width="16px"></path><path d="M 1 8 C 0.448 8 0 7.552 0 7 L 0 1 C 0 0.448 0.448 0 1 0 L 7 0 C 7.552 0 8 0.448 8 1 L 8 7 C 8 7.552 7.552 8 7 8 Z" fill="transparent" height="8px" id="CXld2vB46" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(14 2)" width="8px"></path></svg>
+</div><div class="mit-mit-faq-answer" style="max-height:0;overflow:hidden;opacity:0;padding:0 22px;transform:none;transition:max-height .35s ease,opacity .35s ease,padding .35s ease"><p style="font-family:&#39;Geist&#39;,sans-serif;font-size:14px;font-weight:500;line-height:1.55em;color:#5E6B7F;margin:0;padding:0 0 14px">Да. Telegram, почта, календарь, базы знания, API и внутренние системы — подключаем под ваши задачи.</p></div>
+<script>
+(function() {
+  // --- Mobile form handler ---
+  const mobileForm = document.getElementById('mobile-form');
+  if (mobileForm) {
+    const status = document.createElement('div');
+    status.id = 'form-status-mobile';
+    mobileForm.appendChild(status);
+
+    mobileForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const inputs = mobileForm.querySelectorAll('input, textarea');
+      const data = {};
+      let valid = true;
+      inputs.forEach(function(input) {
+        const key = input.name || input.placeholder.toLowerCase().replace(/[^a-z]/g, '');
+        data[key] = input.value.trim();
+        if (!data[key]) valid = false;
+      });
+      if (!valid) {
+        status.className = 'error';
+        status.textContent = 'Заполните все поля';
+        return;
+      }
+
+      status.className = '';
+      status.textContent = 'Отправка…';
+      const btn = mobileForm.querySelector('button');
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error('Server error');
+        status.className = 'success';
+        status.textContent = 'Заявка отправлена. Мы свяжемся с вами в Telegram.';
+        mobileForm.reset();
+      } catch (err) {
+        status.className = 'error';
+        status.textContent = 'Не удалось отправить. Попробуйте позже или напишите нам в Telegram.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+
+  // --- Entrance animations for mobile sections ---
+  const mobileRoot = document.getElementById('mobile-version');
+  if (mobileRoot) {
+    const sections = mobileRoot.querySelectorAll('section, nav');
+    sections.forEach(function(el) { el.classList.add('animate-in'); });
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    sections.forEach(function(el) { observer.observe(el); });
+  }
+
+  // --- Dynamic tablet scaling ---
+  function adjustTabletScale() {
+    const w = window.innerWidth;
+    const main = document.getElementById('main');
+    if (!main) return;
+    if (w >= 769 && w <= 1199) {
+      const scale = Math.max(0.6, (w - 40) / 1200);
+      main.style.transform = 'scale(' + scale.toFixed(3) + ')';
+      main.style.width = '1200px';
+      main.style.margin = '0 auto';
+      main.style.transformOrigin = 'top center';
+    } else {
+      main.style.transform = '';
+      main.style.width = '';
+      main.style.margin = '';
+      main.style.transformOrigin = '';
+    }
+  }
+  adjustTabletScale();
+  window.addEventListener('resize', adjustTabletScale);
+})();
+
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  (function(){
+    var scene = document.querySelector('.mit-5dfrwx');
+    if (!scene) return;
+    var userReq = scene.querySelector('.mit-jno758');
+    var userText = userReq ? userReq.querySelector('.mit-text') : null;
+    var execPlan = scene.querySelector('.mit-1m498tl');
+    var execTexts = execPlan ? execPlan.querySelectorAll('.mit-text') : [];
+    var header = execTexts[0] || null;
+    var checklistEl = execTexts[1] || null;
+    var headerOriginal = header ? header.textContent.trim() : '';
+    var checklistOriginal = checklistEl ? checklistEl.textContent.trim() : '';
+    var cards = Array.from(scene.querySelectorAll('.mit-o4ktbo, .mit-1he90ra, .mit-1yo23o5, .mit-pikjiv'));
+    cards.forEach(function(c){ c.classList.add('mit-card-reveal'); });
+    if (header) header.textContent = '';
+    if (checklistEl) checklistEl.textContent = '';
+    if (execPlan) execPlan.style.opacity = '0';
+    function revealCards(){ cards.forEach(function(c,i){ setTimeout(function(){ c.classList.add('mit-visible'); }, i*180); }); }
+    function typewrite(el, txt, speed, cb){
+      if (!el) { if (cb) cb(); return; }
+      el.textContent = ''; el.classList.add('mit-typewriter');
+      var i=0, iv = setInterval(function(){
+        el.textContent = txt.substring(0, i+1); i++;
+        if (i >= txt.length){ clearInterval(iv); if (cb) cb(); }
+      }, speed);
+    }
+    if (userText) {
+      typewrite(userText, userText.textContent.trim(), 32, function(){
+        userText.style.borderRight = 'none';
+        if (execPlan) { execPlan.style.transition='none'; execPlan.style.opacity='1'; }
+        typewrite(header, headerOriginal, 28, function(){
+          if (header) header.style.borderRight = 'none';
+          if (checklistEl) {
+            var items = checklistOriginal.split('✓').map(function(s){return s.trim();}).filter(Boolean);
+            checklistEl.textContent = ''; checklistEl.classList.add('mit-typewriter'); checklistEl.style.whiteSpace = 'pre-wrap';
+            var shown=[], li=0, iv2 = setInterval(function(){
+              shown.push('✓ ' + items[li]); checklistEl.textContent = shown.join('\n'); li++;
+              if (li >= items.length){ clearInterval(iv2); checklistEl.style.borderRight='none'; revealCards(); }
+            }, 240);
+          } else revealCards();
+        });
+      });
+    }
+  })();
+  (function(){
+    var animated = new Set();
+    function setReveal(el, delay){
+      if (!el || animated.has(el)) return;
+      animated.add(el);
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(36px)';
+      el.style.transition = 'opacity .75s cubic-bezier(.22,1,.36,1) ' + delay + 's, transform .75s cubic-bezier(.22,1,.36,1) ' + delay + 's';
+    }
+    function reveal(el){ el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }
+    function observe(els){
+      var obs = new IntersectionObserver(function(entries, o){
+        entries.forEach(function(e){ if (e.isIntersecting){ reveal(e.target); o.unobserve(e.target); } });
+      }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
+      els.forEach(function(el){ if (el) obs.observe(el); });
+    }
+    function stagger(els, base, step){ els.forEach(function(el,i){ setReveal(el, base + i*step); }); observe(els); }
+    var sectionNames = ['Navigation','Hero','Advantage Strip','Capabilities','Intermediate CTA','Integrations Hub','Personal Skills','Security and Launch','Pricing','FAQ and Lead Form','Footer'];
+    sectionNames.forEach(function(n,i){ var el = document.querySelector('[data-section="' + n + '"]'); if (el) setReveal(el, Math.min(i,8)*0.05); });
+    observe(sectionNames.map(function(n){ return document.querySelector('[data-section="' + n + '"]'); }).filter(Boolean));
+    var strip = document.querySelector('.mit-1h4gf12');
+    if (strip) stagger(Array.from(strip.querySelectorAll('[data-section]')), 0.1, 0.1);
+    var caps = document.querySelector('.mit-1bmxqmy');
+    if (caps) stagger(Array.from(caps.querySelectorAll('[data-section]')), 0.1, 0.08);
+    var trust = document.querySelector('.mit-5p3jur');
+    if (trust) { stagger(Array.from(trust.querySelectorAll('[data-section]')), 0.1, 0.1); trust.querySelectorAll('svg').forEach(function(s,i){ s.classList.add('mit-float'); s.style.animationDelay = (i*0.4)+'s'; }); }
+    var launch = document.querySelector('.mit-xmlud9');
+    if (launch) stagger(Array.from(launch.querySelectorAll('[data-section]')), 0.1, 0.12);
+    var faq = document.querySelector('.mit-1eo');
+    if (faq) stagger(Array.from(faq.querySelectorAll('[data-section]')), 0.1, 0.08);
+    var skills = document.querySelector('.mit-u0ra1u');
+    if (skills) stagger(Array.from(skills.querySelectorAll('[data-section]')), 0.1, 0.12);
+    var hub = document.querySelector('.mit-1ry2qut');
+    if (hub){
+      var all = [];
+      ['Incoming Message','Incoming File','Incoming Document','Incoming Calendar','Mail Source','Knowledge Source'].forEach(function(n){
+        var el = hub.querySelector('[data-section="' + n + '"]'); if (el) all.push({el:el, fromX:-120});
+      });
+      ['Task Output','Summary Output','Skill Output','Meeting and Reminder Output'].forEach(function(n){
+        var el = hub.querySelector('[data-section="' + n + '"]'); if (el) all.push({el:el, fromX:120});
+      });
+      var core = hub.querySelector('.mit-xbunyb'); if (core) all.push({el:core, fromX:0, fromScale:0.85});
+      all.forEach(function(item,i){
+        if (animated.has(item.el)) return; animated.add(item.el);
+        var delay = 0.1 + i*0.06;
+        item.el.style.opacity='0';
+        item.el.style.transform = 'translateX(' + (item.fromX||0) + 'px) scale(' + (item.fromScale||1) + ')';
+        item.el.style.transition = 'opacity .8s cubic-bezier(.22,1,.36,1) ' + delay + 's, transform .8s cubic-bezier(.22,1,.36,1) ' + delay + 's';
+      });
+      var obs2 = new IntersectionObserver(function(entries, o){
+        entries.forEach(function(e){ if (e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateX(0) scale(1)'; o.unobserve(e.target); } });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+      all.forEach(function(item){ obs2.observe(item.el); });
+    }
+  })();
+  
+(function(){
+  document.querySelectorAll('.mit-faq-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      var ans = item.querySelector('.mit-faq-answer');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.mit-faq-item.open').forEach(function(i){ i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+})();
+
+})();
+</script>
+</body>
+</html>
