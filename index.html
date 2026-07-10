@@ -681,60 +681,52 @@ html body { background: rgb(246, 248, 251); } html { font-size: 100%; }
 <h2 style="font-size:22px;font-weight:700;text-align:center;margin:0 0 6px;color:#1A1F2B;">Оставить заявку</h2>
 <p style="font-size:13px;color:#5E6B7F;text-align:center;margin:0 0 20px;">Мы свяжемся с вами в Telegram</p>
 <form id="mobile-form" style="display:flex;flex-direction:column;gap:10px;">
-<input name="lastName" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Фамилия *" required="" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;outline:none;transition:border-color .2s;" type="text"/>
-<input name="firstName" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Имя *" required="" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;outline:none;transition:border-color .2s;" type="text"/>
-<input name="telegram" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Telegram @username *" required="" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;outline:none;transition:border-color .2s;" type="text"/>
+<input name="lastName" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Фамилия *" required="" pattern="[A-Za-zА-Яа-яЁё\- ]{2,}" minlength="2" title="Только буквы, дефис и пробел, минимум 2 символа" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;outline:none;transition:border-color .2s;" type="text"/>
+<input name="firstName" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Имя *" required="" pattern="[A-Za-zА-Яа-яЁё\- ]{2,}" minlength="2" title="Только буквы, дефис и пробел, минимум 2 символа" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;outline:none;transition:border-color .2s;" type="text"/>
+<input name="telegram" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Telegram @username *" required="" pattern="@?[a-zA-Z][a-zA-Z0-9_]{4,31}" minlength="5" title="Формат: @username (латиница, цифры, подчёркивание, от 5 символов)" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;outline:none;transition:border-color .2s;" type="text"/>
 <input name="email" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Почта *" required="" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;outline:none;transition:border-color .2s;" type="email"/>
-<textarea name="task" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Опишите задачу" required="" rows="3" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;resize:vertical;outline:none;transition:border-color .2s;"></textarea>
+<textarea name="task" onblur="this.style.borderColor='#dce5ef'" onfocus="this.style.borderColor='#2aabee'" placeholder="Опишите задачу" required="" minlength="10" title="Минимум 10 символов" rows="3" style="padding:12px 14px;border:1px solid #dce5ef;border-radius:12px;font-size:14px;font-family:inherit;background:#f6f8fb;color:#1A1F2B;resize:vertical;outline:none;transition:border-color .2s;"></textarea>
 <button style="background:#2aabee;color:#fff;border:none;padding:14px;border-radius:14px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;box-shadow:0 8px 24px #2aabee2e;transition:opacity .2s;" type="submit">Отправить заявку</button>
 <div id="form-status-mobile" style="font-size:13px;text-align:center;min-height:18px;margin-top:4px;"></div>
 </form>
 </div>
 </section>
-<!-- ===== FAQ (9 questions) ===== -->
+<!-- ===== FAQ (dynamic from API) ===== -->
 <section style="padding:0 16px 40px;">
 <div style="text-align:center;margin-bottom:24px;">
 <h2 style="font-size:24px;font-weight:700;margin:0 0 8px;color:#1A1F2B;">Частые вопросы</h2>
 </div>
-<div style="display:flex;flex-direction:column;gap:8px;">
-<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03);">
-<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">Сколько времени занимает настройка?<span style="font-size:18px;color:#8EA1B2;">+</span></summary>
-<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5;">Базовый запуск занимает около 30 минут. За это время разворачивается ваш агент, подключается Telegram и активируются базовые навыки. Дальше ассистента можно постепенно развивать под ваши задачи, правила и интеграции.</p>
-</details>
-<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03);">
-<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">Безопасны ли мои данные?<span style="font-size:18px;color:#8EA1B2;">+</span></summary>
-<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5;">МИТ работает на базе современных AI-моделей. Если вы планировали отправить эти данные в GPT, DeepSeek, Claude или другую модель, то их можно использовать и в МИТ. При этом у каждого ассистента отдельный сервер, а доступы и настройки хранятся в индивидуальной среде.</p>
-</details>
-<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03);">
-<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">Можно ли отменить подписку?<span style="font-size:18px;color:#8EA1B2;">+</span></summary>
-<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5;">Да. Вы просто не оплачиваете следующий период. После отмены доступ к ассистенту и ранее созданным навыкам прекращается, поэтому вернуться к ним позже уже не получится.</p>
-</details>
-<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03);">
-<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">Что значит свой навык?<span style="font-size:18px;color:#8EA1B2;">+</span></summary>
-<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5;">Навык — это повторяемое действие, которое ассистент запоминает и выполняет по вашим правилам. Например: подготовить отчет, проверить таблицу, разобрать входящие, создать документ по шаблону или собрать сводку. Один раз задаёте формат результата и порядок работы — дальше запускаете навык короткой командой в Telegram.</p>
-</details>
-<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03);">
-<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">Можно ли развивать своего ассистента?<span style="font-size:18px;color:#8EA1B2;">+</span></summary>
-<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5;">Да. В ассистента можно добавлять новые интеграции с вашими системами, создавать персональные навыки и запускать их автономно. Со временем МИТ лучше подстраивается под ваш контекст, задачи и привычный формат работы.</p>
-</details>
-<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03);">
-<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">Какие базовые навыки уже есть внутри?<span style="font-size:18px;color:#8EA1B2;">+</span></summary>
-<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5;">Задачи, календарь, напоминания, идеи и заметки, документы, Excel и таблицы, база знаний и интеграции с рабочими источниками.</p>
-</details>
-<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03);">
-<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">Что входит в стоимость?<span style="font-size:18px;color:#8EA1B2;">+</span></summary>
-<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5;">Запуск агента за 30 минут, отдельный сервер, доступ к ведущим AI-моделям, поддержка 24/7, улучшение агента под ваш контекст и базовые навыки для ежедневной работы.</p>
-</details>
-<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03);">
-<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">Нужно ли уметь программировать?<span style="font-size:18px;color:#8EA1B2;">+</span></summary>
-<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5;">Нет. Ассистент работает через Telegram, а навыки можно описывать обычным языком: что нужно сделать, по каким правилам и в каком формате нужен результат.</p>
-</details>
-<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03);">
-<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">Чем МИТ отличается от обычного ChatGPT?<span style="font-size:18px;color:#8EA1B2;">+</span></summary>
-<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5;">ChatGPT отвечает на запросы. МИТ работает как персональный ассистент: держит контекст, запускает навыки, работает с интеграциями, напоминает о важном и выполняет повторяемые действия по вашим правилам.</p>
-</details>
+<div id="faq-container" style="display:flex;flex-direction:column;gap:8px;">
+<p style="text-align:center;color:#8EA1B2;font-size:14px;">Загрузка вопросов...</p>
 </div>
 </section>
+<script>
+(function() {
+  var container = document.getElementById('faq-container');
+  if (!container) return;
+  fetch('https://titovtech.ru/api/faqs/')
+    .then(function(r) { return r.json(); })
+    .then(function(items) {
+      if (!items.length) {
+        container.innerHTML = '<p style="text-align:center;color:#8EA1B2;font-size:14px;">Вопросов пока нет</p>';
+        return;
+      }
+      var html = '';
+      items.slice(0, 8).forEach(function(item) {
+        html += '<details style="background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(26,31,43,0.03);">' +
+          '<summary style="font-weight:600;font-size:14px;color:#1A1F2B;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">' +
+          item.question + '<span style="font-size:18px;color:#8EA1B2;">+</span></summary>' +
+          '<p style="font-size:13px;color:#5E6B7F;margin:10px 0 0;line-height:1.5;">' + item.answer + '</p>' +
+          '</details>';
+      });
+      container.innerHTML = html;
+    })
+    .catch(function() {
+      container.innerHTML = '<p style="text-align:center;color:#8EA1B2;font-size:14px;">Не удалось загрузить вопросы</p>';
+    });
+})();
+</script>
+
 <!-- ===== FOOTER ===== -->
 <footer style="padding:24px 16px;text-align:center;border-top:1px solid #e1e8f2;font-size:13px;color:#8EA1B2;background:#fff;">
 <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;">
@@ -817,7 +809,7 @@ html body { background: rgb(246, 248, 251); } html { font-size: 100%; }
           <p style="margin:0;padding:12px 0 22px;font-family:'Geist',sans-serif;font-size:14px;font-weight:500;line-height:1.55em;color:#5E6B7F;">Да. Telegram, почта, календарь, базы знания, API и внутренние системы — подключаем под ваши задачи.</p>
         </div>
       </div>
-</div></div><div class="mit-1s3dbzb" data-border="true" data-mit-name="Lead Form Card" id="lead-form"><div class="mit-ve1gsr" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtODAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:30px;--mit-font-weight:800;--mit-line-height:1.08em;--mit-text-color:#1A1F2B'>Оставьте заявку — и МИТ начнёт установку</p></div><div class="mit-ijgy04" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtcmVndWxhcg==;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:15px;--mit-line-height:1.5em;--mit-text-color:#5E6B7F'>После отправки формы запуск ассистента начнётся автоматически. Без созвонов, ожидания менеджера и ручного согласования.</p></div><form class="mit-1waxqkd" data-mit-name="Application Form"><label class="mit-xla7nn"><div class="mit-1ig3cjj" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:13px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:#1A1F2B'>Фамилия <span style="color:#dc2626">*</span></p></div><div class="mit-form-text-input mit-form-input-wrapper mit-1apms6n mit-form-text-input-type"><input class="mit-form-input mit-form-input-empty" name="last_name" placeholder="Иванов" required="" type="text" value=""/></div></label><label class="mit-1imb7fo"><div class="mit-1wvewf4" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:13px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:#1A1F2B'>Имя <span style="color:#dc2626">*</span></p></div><div class="mit-form-text-input mit-form-input-wrapper mit-1iunhxd mit-form-text-input-type"><input class="mit-form-input mit-form-input-empty" name="first_name" placeholder="Алексей" required="" type="text" value=""/></div></label><label class="mit-1lzatob"><div class="mit-8fnkt6" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:13px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:#1A1F2B'>Telegram <span style="color:#dc2626">*</span></p></div><div class="mit-form-text-input mit-form-input-wrapper mit-xvwmm6 mit-form-text-input-type"><input class="mit-form-input mit-form-input-empty" name="telegram" placeholder="@username" required="" type="text" value=""/></div></label><label class="mit-1lzatob" style="display:flex!important;flex-flow:column!important;gap:7px!important;width:100%!important;position:relative!important"><div class="mit-8fnkt6" data-mit-component-type="RichTextContainer" style="transform:none;position:relative!important"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:13px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:#1A1F2B'>Почта <span style="color:#dc2626">*</span></p></div><div class="mit-form-text-input mit-form-input-wrapper mit-xvwmm6 mit-form-text-input-type" style="position:relative!important"><input class="mit-form-input mit-form-input-empty" name="email" placeholder="mail@example.com" required="" type="email" value=""/></div></label><label class="mit-pwr4d1"><div class="mit-wlkvmh" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:13px;--mit-font-weight:600;--mit-line-height:1.25em;--mit-text-color:#1A1F2B'>Какую задачу хотите решать через ассистента?</p></div><div class="mit-form-text-input mit-form-input-wrapper mit-1qwfgjf mit-form-textarea-input-type"><textarea class="mit-form-input" name="task" placeholder="Например: собирать отчёты, разбирать входящие, готовить документы…"></textarea></div></label><div class="mit-1y53hpc-container"><button class="mit-p4cOq mit-1e9qc37 mit-v-1e9qc37" data-mit-name="Default" data-reset="button" style="background-color:rgb(42, 171, 238);width:100%;border-bottom-left-radius:16px;border-bottom-right-radius:16px;border-top-left-radius:16px;border-top-right-radius:16px" type="submit"><div class="mit-3znzqm" data-mit-component-type="RichTextContainer" style="--extracted-r6o4lv:#FFFFFF;transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtODAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:15px;--mit-font-weight:800;--mit-line-height:1em;--mit-text-color:var(--extracted-r6o4lv, #FFFFFF)'>Запустить МИТ ассистента</p></div></button></div><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="website" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="company" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="message" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="subject" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="title" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="description" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="feedback" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="notes" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="details" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="remarks" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="comments" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/></form></div></section><footer class="mit-iws7i4" data-mit-name="Footer"><div class="mit-173tpu7" data-mit-name="Footer Brand"><div class="mit-1e47m9a" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtODAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:20px;--mit-font-weight:800;--mit-line-height:1em;--mit-text-color:#1A1F2B'>МИТ ассистент</p></div><div class="mit-jocuo5" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtcmVndWxhcg==;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:14px;--mit-line-height:1.45em;--mit-text-color:#5E6B7F'>Ваш персональный AI-ассистент в Telegram для порядка в работе.</p></div></div><div class="mit-1sdgmpq" data-mit-name="Footer Links"><div class="mit-k3gt38" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:14px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:rgb(94, 107, 127)'><a class="mit-text text-preset-1wu8czi" href="./#capabilities">Возможности</a></p></div><div class="mit-v4p6lg" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:14px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:rgb(94, 107, 127)'><a class="mit-text text-preset-1wu8czi" href="./#integrations">Интеграции</a></p></div><div class="mit-1ar1tk0" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:14px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:rgb(94, 107, 127)'><a class="mit-text text-preset-1wu8czi" href="./#security">Как это работает</a></p></div><div class="mit-1xqvgr4" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:14px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:rgb(94, 107, 127)'><a class="mit-text text-preset-1wu8czi" href="./#pricing">Стоимость</a></p></div></div></footer></div><div id="overlay"></div></div>
+</div></div><div class="mit-1s3dbzb" data-border="true" data-mit-name="Lead Form Card" id="lead-form"><div class="mit-ve1gsr" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtODAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:30px;--mit-font-weight:800;--mit-line-height:1.08em;--mit-text-color:#1A1F2B'>Оставьте заявку — и МИТ начнёт установку</p></div><div class="mit-ijgy04" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtcmVndWxhcg==;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:15px;--mit-line-height:1.5em;--mit-text-color:#5E6B7F'>После отправки формы запуск ассистента начнётся автоматически. Без созвонов, ожидания менеджера и ручного согласования.</p></div><form class="mit-1waxqkd" data-mit-name="Application Form"><label class="mit-xla7nn"><div class="mit-1ig3cjj" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:13px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:#1A1F2B'>Фамилия <span style="color:#dc2626">*</span></p></div><div class="mit-form-text-input mit-form-input-wrapper mit-1apms6n mit-form-text-input-type"><input class="mit-form-input mit-form-input-empty" name="last_name" placeholder="Иванов" required="" type="text" value="" pattern="[A-Za-zА-Яа-яЁё\- ]{2,}" minlength="2" title="Только буквы, дефис и пробел, минимум 2 символа"/></div></label><label class="mit-1imb7fo"><div class="mit-1wvewf4" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:13px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:#1A1F2B'>Имя <span style="color:#dc2626">*</span></p></div><div class="mit-form-text-input mit-form-input-wrapper mit-1iunhxd mit-form-text-input-type"><input class="mit-form-input mit-form-input-empty" name="first_name" placeholder="Алексей" required="" type="text" value="" pattern="[A-Za-zА-Яа-яЁё\- ]{2,}" minlength="2" title="Только буквы, дефис и пробел, минимум 2 символа"/></div></label><label class="mit-1lzatob"><div class="mit-8fnkt6" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:13px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:#1A1F2B'>Telegram <span style="color:#dc2626">*</span></p></div><div class="mit-form-text-input mit-form-input-wrapper mit-xvwmm6 mit-form-text-input-type"><input class="mit-form-input mit-form-input-empty" name="telegram" placeholder="@username" required="" type="text" value="" pattern="@?[a-zA-Z][a-zA-Z0-9_]{4,31}" minlength="5" title="Формат: @username (латиница, цифры, подчёркивание, от 5 символов)"/></div></label><label class="mit-1lzatob" style="display:flex!important;flex-flow:column!important;gap:7px!important;width:100%!important;position:relative!important"><div class="mit-8fnkt6" data-mit-component-type="RichTextContainer" style="transform:none;position:relative!important"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:13px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:#1A1F2B'>Почта <span style="color:#dc2626">*</span></p></div><div class="mit-form-text-input mit-form-input-wrapper mit-xvwmm6 mit-form-text-input-type" style="position:relative!important"><input class="mit-form-input mit-form-input-empty" name="email" placeholder="mail@example.com" required="" type="email" value=""/></div></label><label class="mit-pwr4d1"><div class="mit-wlkvmh" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:13px;--mit-font-weight:600;--mit-line-height:1.25em;--mit-text-color:#1A1F2B'>Какую задачу хотите решать через ассистента?</p></div><div class="mit-form-text-input mit-form-input-wrapper mit-1qwfgjf mit-form-textarea-input-type"><textarea class="mit-form-input" name="task" placeholder="Например: собирать отчёты, разбирать входящие, готовить документы…" minlength="10" title="Минимум 10 символов"></textarea></div></label><div class="mit-1y53hpc-container"><button class="mit-p4cOq mit-1e9qc37 mit-v-1e9qc37" data-mit-name="Default" data-reset="button" style="background-color:rgb(42, 171, 238);width:100%;border-bottom-left-radius:16px;border-bottom-right-radius:16px;border-top-left-radius:16px;border-top-right-radius:16px" type="submit"><div class="mit-3znzqm" data-mit-component-type="RichTextContainer" style="--extracted-r6o4lv:#FFFFFF;transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtODAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:15px;--mit-font-weight:800;--mit-line-height:1em;--mit-text-color:var(--extracted-r6o4lv, #FFFFFF)'>Запустить МИТ ассистента</p></div></button></div><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="website" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="company" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="message" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="subject" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="title" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="description" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="feedback" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="notes" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="details" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="remarks" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/><input aria-hidden="true" autocomplete="one-time-code" data-1p-ignore="true" data-bwignore="true" data-form-type="other" data-lpignore="true" name="comments" style="position:absolute;transform:scale(0)" tabindex="-1" type="text" value=""/></form></div></section><footer class="mit-iws7i4" data-mit-name="Footer"><div class="mit-173tpu7" data-mit-name="Footer Brand"><div class="mit-1e47m9a" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtODAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:20px;--mit-font-weight:800;--mit-line-height:1em;--mit-text-color:#1A1F2B'>МИТ ассистент</p></div><div class="mit-jocuo5" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtcmVndWxhcg==;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:14px;--mit-line-height:1.45em;--mit-text-color:#5E6B7F'>Ваш персональный AI-ассистент в Telegram для порядка в работе.</p></div></div><div class="mit-1sdgmpq" data-mit-name="Footer Links"><div class="mit-k3gt38" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:14px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:rgb(94, 107, 127)'><a class="mit-text text-preset-1wu8czi" href="./#capabilities">Возможности</a></p></div><div class="mit-v4p6lg" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:14px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:rgb(94, 107, 127)'><a class="mit-text text-preset-1wu8czi" href="./#integrations">Интеграции</a></p></div><div class="mit-1ar1tk0" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:14px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:rgb(94, 107, 127)'><a class="mit-text text-preset-1wu8czi" href="./#security">Как это работает</a></p></div><div class="mit-1xqvgr4" data-mit-component-type="RichTextContainer" style="transform:none"><p class="mit-text" dir="auto" style='--font-selector:R0Y7R2Vpc3QtNjAw;--mit-font-family:"Geist", "Geist Placeholder", sans-serif;--mit-font-size:14px;--mit-font-weight:600;--mit-line-height:1em;--mit-text-color:rgb(94, 107, 127)'><a class="mit-text text-preset-1wu8czi" href="./#pricing">Стоимость</a></p></div></div></footer></div><div id="overlay"></div></div>
 <div aria-hidden="true" id="svg-templates" style="position: absolute; overflow: hidden; bottom: 0; left: 0; width: 0; height: 0; z-index: 0; contain: strict">
 <svg display="block" id="1952988144" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 4.34 4.34 L 0 0" fill="transparent" height="4.34px" id="z8RZjJ9Kn" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(16.66 16.66)" width="4.34px"></path><path d="M 0 8 C 0 3.582 3.582 0 8 0 C 12.418 0 16 3.582 16 8 C 16 12.418 12.418 16 8 16 C 3.582 16 0 12.418 0 8 Z" fill="transparent" height="16px" id="FZH9LEsdu" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 3)" width="16px"></path></svg>
 <svg display="block" id="3583153760" role="presentation" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 0 L 0 4" fill="transparent" height="4px" id="recurAYUl" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(8 2)" width="1px"></path><path d="M 0 0 L 0 4" fill="transparent" height="4px" id="JNtAKTbuu" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(16 2)" width="1px"></path><path d="M 2 18 C 0.895 18 0 17.105 0 16 L 0 2 C 0 0.895 0.895 0 2 0 L 16 0 C 17.105 0 18 0.895 18 2 L 18 16 C 18 17.105 17.105 18 16 18 Z" fill="transparent" height="18px" id="AC0vhtl4w" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 4)" width="18px"></path><path d="M 0 0 L 18 0" fill="transparent" height="1px" id="mIPZIhfuf" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(3 10)" width="18px"></path><path d="M 0 2 L 2 4 L 6 0" fill="transparent" height="4px" id="y2Tf1eRIm" stroke="var(--1m973uw, rgb(0,0,0))" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--js9iwy, 2)" transform="translate(9 14)" width="6px"></path></svg>
@@ -886,6 +878,33 @@ html body { background: rgb(246, 248, 251); } html { font-size: 100%; }
         return;
       }
 
+      // Validate Telegram format
+      var tgInput = mobileForm.querySelector('input[name="telegram"]');
+      if (tgInput && tgInput.value.trim() && !/^@?[a-zA-Z][a-zA-Z0-9_]{4,31}$/.test(tgInput.value.trim())) {
+        status.className = 'error';
+        status.textContent = 'Telegram: формат @username (латиница, цифры, подчёркивание, от 5 символов)';
+        return;
+      }
+
+      // Validate name fields (letters only)
+      var nameFields = ['lastName', 'firstName'];
+      for (var ni = 0; ni < nameFields.length; ni++) {
+        var nf = mobileForm.querySelector('input[name="' + nameFields[ni] + '"]');
+        if (nf && nf.value.trim() && !/^[A-Za-zА-Яа-яЁё\- ]{2,}$/.test(nf.value.trim())) {
+          status.className = 'error';
+          status.textContent = 'Имя и фамилия: только буквы, дефис и пробел, минимум 2 символа';
+          return;
+        }
+      }
+
+      // Validate task min length
+      var taskInput = mobileForm.querySelector('textarea[name="task"]');
+      if (taskInput && taskInput.value.trim() && taskInput.value.trim().length < 10) {
+        status.className = 'error';
+        status.textContent = 'Опишите задачу подробнее (минимум 10 символов)';
+        return;
+      }
+
       status.className = '';
       status.textContent = 'Отправка…';
       const btn = mobileForm.querySelector('button');
@@ -948,6 +967,36 @@ html body { background: rgb(246, 248, 251); } html { font-size: 100%; }
         desktopStatus.className = '';
         desktopStatus.style.color = '#dc2626';
         desktopStatus.textContent = 'Укажите корректный email';
+        return;
+      }
+
+      // Validate Telegram format
+      var tgInput = desktopForm.querySelector('input[name="telegram"]');
+      if (tgInput && tgInput.value.trim() && !/^@?[a-zA-Z][a-zA-Z0-9_]{4,31}$/.test(tgInput.value.trim())) {
+        desktopStatus.className = '';
+        desktopStatus.style.color = '#dc2626';
+        desktopStatus.textContent = 'Telegram: формат @username (латиница, цифры, подчёркивание, от 5 символов)';
+        return;
+      }
+
+      // Validate name fields (letters only)
+      var nameFields = ['last_name', 'first_name'];
+      for (var ni = 0; ni < nameFields.length; ni++) {
+        var nf = desktopForm.querySelector('input[name="' + nameFields[ni] + '"]');
+        if (nf && nf.value.trim() && !/^[A-Za-zА-Яа-яЁё\- ]{2,}$/.test(nf.value.trim())) {
+          desktopStatus.className = '';
+          desktopStatus.style.color = '#dc2626';
+          desktopStatus.textContent = 'Имя и фамилия: только буквы, дефис и пробел, минимум 2 символа';
+          return;
+        }
+      }
+
+      // Validate task min length
+      var taskInput = desktopForm.querySelector('textarea[name="task"]');
+      if (taskInput && taskInput.value.trim() && taskInput.value.trim().length < 10) {
+        desktopStatus.className = '';
+        desktopStatus.style.color = '#dc2626';
+        desktopStatus.textContent = 'Опишите задачу подробнее (минимум 10 символов)';
         return;
       }
 
@@ -1117,15 +1166,34 @@ html body { background: rgb(246, 248, 251); } html { font-size: 100%; }
     }
   })();
   
+// Dynamic FAQ from API — replaces hardcoded desktop FAQ items
 (function(){
-  document.querySelectorAll('.mit-faq-item').forEach(function(item){
-    item.addEventListener('click', function(){
-      var ans = item.querySelector('.mit-faq-answer');
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.mit-faq-item.open').forEach(function(i){ i.classList.remove('open'); });
-      if (!isOpen) item.classList.add('open');
+  var faqItems = document.querySelectorAll('.mit-faq-item');
+  if (!faqItems.length) return;
+  
+  fetch('https://titovtech.ru/api/faqs/')
+    .then(function(r) { return r.json(); })
+    .then(function(items) {
+      if (!items.length) return;
+      faqItems.forEach(function(faqEl, idx) {
+        if (idx >= items.length) { faqEl.style.display = 'none'; return; }
+        var row = faqEl.querySelector('.mit-faq-row p');
+        var answer = faqEl.querySelector('.mit-faq-answer p');
+        if (row) row.textContent = items[idx].question;
+        if (answer) answer.textContent = items[idx].answer;
+      });
+      // Re-bind click handlers after content update
+      faqItems.forEach(function(item){
+        item.addEventListener('click', function(){
+          var isOpen = item.classList.contains('open');
+          document.querySelectorAll('.mit-faq-item.open').forEach(function(i){ i.classList.remove('open'); });
+          if (!isOpen) item.classList.add('open');
+        });
+      });
+    })
+    .catch(function() {
+      // Keep hardcoded fallback if API fails
     });
-  });
 })();
 
 })();
