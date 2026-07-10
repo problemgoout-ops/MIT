@@ -10,7 +10,7 @@ def health_check(request):
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('assistent/admin/', admin.site.urls),
     path('api/leads/', LeadCreateView.as_view(), name='lead-create'),
     path('api/faqs/', FAQListView.as_view(), name='faq-list'),
     path('api/health/', health_check, name='health-check'),
