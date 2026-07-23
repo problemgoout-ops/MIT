@@ -991,7 +991,7 @@ html body { background: rgb(246, 248, 251); } html { font-size: 100%; }
       btn.disabled = true;
 
       try {
-        const res = await fetch('/api/leads/', {
+        const res = await fetch('https://mitoff.ru/api/leads/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
@@ -1087,7 +1087,7 @@ html body { background: rgb(246, 248, 251); } html { font-size: 100%; }
       if (btn) btn.disabled = true;
 
       try {
-        var res = await fetch('/api/leads/', {
+        var res = await fetch('https://mitoff.ru/api/leads/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
