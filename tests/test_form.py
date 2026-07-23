@@ -312,3 +312,84 @@ class TestValidationParity:
         """Both frontend and backend must require ≥10 chars for task."""
         html = fetch_html()
         assert "length < 10" in html, "Task min-length check not found in HTML"
+
+
+# ---------------------------------------------------------------------------
+# Cache-busting tests — ensure fresh HTML is always served
+# ---------------------------------------------------------------------------
+
+class TestCacheHeaders:
+    """Ensure browsers don't cache stale HTML with bugs."""
+
+    def test_index_html_no_store(self):
+        """index.html must have Cache-Control: no-cache or no-store."""
+        resp = requests.get(PROD_URL, timeout=10)
+        cc = resp.headers.get("Cache-Control", "")
+        assert "no-cache" in cc or "no-store" in cc, (
+            f"index.html must have no-cache/no-store, got: {cc}"
+        )
+
+    def test_index_html_no_etag_only(self):
+        """ETag alone is not enough — must have explicit no-cache directive."""
+        resp = requests.get(PROD_URL, timeout=10)
+        cc = resp.headers.get("Cache-Control", "")
+        # If only ETag is present without no-cache, browsers may use stale cache
+        if resp.headers.get("ETag"):
+            assert "no-cache" in cc or "no-store" in cc or "max-age=0" in cc, (
+                "ETag present but no cache-busting directive — browser may serve stale HTML"
+            )
+
+    def test_index_html_expires_past(self):
+        """Expires header must be in the past or absent."""
+        resp = requests.get(PROD_URL, timeout=10)
+        expires = resp.headers.get("Expires", "")
+        if expires:
+            from email.utils import parsedate_to_datetime
+            from datetime import datetime, timezone
+            exp_dt = parsedate_to_datetime(expires)
+            now = datetime.now(timezone.utc)
+            assert exp_dt <= now, (
+                f"Expires header is in the future ({expires}) — browser may cache HTML"
+            )
+
+    def test_api_no_cache(self):
+        """API responses must have Cache-Control: no-store."""
+        data = {
+            "last_name": "Кеш",
+            "first_name": "Тест",
+            "telegram": "@cache_test",
+            "email": "cache@test.com",
+            "task": "проверка заголовков кеширования",
+        }
+        resp = requests.post(API_URL, json=data, timeout=10)
+        cc = resp.headers.get("Cache-Control", "")
+        assert "no-store" in cc or "no-cache" in cc, (
+            f"API must have no-store/no-cache, got: {cc}"
+        )
+
+    def test_html_content_length_stable(self):
+        """Two consecutive requests must return same content length (no mid-deploy mismatch)."""
+        r1 = requests.get(PROD_URL, timeout=10)
+        r2 = requests.get(PROD_URL, timeout=10)
+        assert r1.status_code == 200
+        assert r2.status_code == 200
+        # Content should be stable — if lengths differ wildly, something is wrong
+        len1 = len(r1.content)
+        len2 = len(r2.content)
+        assert len1 == len2, (
+            f"HTML size changed between requests ({len1} → {len2}) — "
+            "possible mid-deploy or dynamic content issue"
+        )
+
+    def test_html_contains_freshness_marker(self):
+        """HTML must contain the fixed form handlers (no regression to buggy version)."""
+        html = fetch_html()
+        script = get_main_script(html)
+        # The fixed version has desktopForm references in desktop handler
+        desktop = get_section(script, "// --- Desktop form handler ---")
+        assert "desktopForm.querySelector" in desktop, (
+            "Desktop handler missing desktopForm — possible regression to buggy version"
+        )
+        assert "desktopStatus.textContent" in desktop, (
+            "Desktop handler missing desktopStatus — possible regression to buggy version"
+        )
