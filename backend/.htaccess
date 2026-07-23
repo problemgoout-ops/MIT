@@ -1,0 +1,5 @@
+PassengerEnabled on
+PassengerAppType wsgi
+PassengerStartupFile passenger_wsgi.py
+PassengerPython /var/www/u3520972/data/www/titovtech.ru/assistent/backend/venv/bin/python
+PassengerAppRoot /var/www/u3520972/data/www/titovtech.ru/assistent/backend

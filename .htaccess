@@ -1,0 +1,18 @@
+RewriteEngine On
+
+# --- Proxy for old /assistent/api/* endpoints to Django backend ---
+RewriteCond %{REQUEST_URI} ^/assistent/api/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^assistent/api/(.*) http://127.0.0.1:8000/api/$1 [P,L]
+
+# --- Django backend static files ---
+RewriteRule ^assistent/backend/static/(.*) http://127.0.0.1:8000/static/$1 [P,L]
+RewriteRule ^assistent/backend/media/(.*) http://127.0.0.1:8000/media/$1 [P,L]
+
+# --- Django admin and backend URLs ---
+RewriteRule ^assistent/admin/(.*) http://127.0.0.1:8000/admin/$1 [P,L]
+RewriteRule ^assistent/backend/admin/(.*) http://127.0.0.1:8000/admin/$1 [P,L]
+RewriteRule ^assistent/backend/api/(.*) http://127.0.0.1:8000/api/$1 [P,L]
+
+# --- Landing page admin (legacy HTML fallback) ---
+RewriteRule ^assistent/admin/?$ /assistent/api/admin.html [L]
