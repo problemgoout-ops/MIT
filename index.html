@@ -1028,11 +1028,11 @@ html body { background: rgb(246, 248, 251); } html { font-size: 100%; }
         if (msg.indexOf('Failed to fetch') !== -1 || msg.indexOf('NetworkError') !== -1) {
           status.innerHTML = 'Нет соединения с сервером. Проверьте интернет и попробуйте снова.';
         } else if (msg.indexOf('HTTP 5') !== -1) {
-          status.innerHTML = 'Сервер временно недоступен. Попробуйте через минуту или <a href="https://t.me/mit_assistent" target="_blank" style="color:#2aabee;text-decoration:underline;">напишите в Telegram</a>.';
+          status.textContent = 'Сервер временно недоступен. Попробуйте через минуту.';
         } else if (msg.indexOf('HTTP 4') !== -1) {
           status.textContent = 'Ошибка в данных формы. Проверьте заполненные поля.';
         } else {
-          status.innerHTML = 'Не удалось отправить. <a href="https://t.me/mit_assistent" target="_blank" style="color:#2aabee;text-decoration:underline;">Напишите нам в Telegram</a>.';
+          status.textContent = 'Не удалось отправить. Попробуйте позже.';
         }
       } finally {
         btn.disabled = false;
@@ -1155,11 +1155,11 @@ html body { background: rgb(246, 248, 251); } html { font-size: 100%; }
         if (msg.indexOf('Failed to fetch') !== -1 || msg.indexOf('NetworkError') !== -1) {
           desktopStatus.innerHTML = 'Нет соединения с сервером. Проверьте интернет и попробуйте снова.';
         } else if (msg.indexOf('HTTP 5') !== -1) {
-          desktopStatus.innerHTML = 'Сервер временно недоступен. Попробуйте через минуту или <a href="https://t.me/mit_assistent" target="_blank" style="color:#2aabee;text-decoration:underline;">напишите в Telegram</a>.';
+          desktopStatus.textContent = 'Сервер временно недоступен. Попробуйте через минуту.';
         } else if (msg.indexOf('HTTP 4') !== -1) {
           desktopStatus.textContent = 'Ошибка в данных формы. Проверьте заполненные поля.';
         } else {
-          desktopStatus.innerHTML = 'Не удалось отправить. <a href="https://t.me/mit_assistent" target="_blank" style="color:#2aabee;text-decoration:underline;">Напишите нам в Telegram</a>.';
+          desktopStatus.textContent = 'Не удалось отправить. Попробуйте позже.';
         }
       } finally {
         if (btn) btn.disabled = false;
